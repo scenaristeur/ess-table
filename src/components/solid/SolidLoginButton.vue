@@ -10,11 +10,6 @@ import auth from 'solid-auth-client';
 
 export default {
   name: 'SolidLoginButton',
-  data: function () {
-    return {
-      webId: null
-    }
-  },
   methods: {
     async login() {
       let session = await auth.currentSession();
@@ -27,6 +22,12 @@ export default {
     async logout(){
       await  auth.logout()
       this.webId = null
+    },
+  },
+  computed:{
+    webId: {
+      get: function() { return this.$store.state.solid.webId},
+      set: function() {}
     },
   }
 }

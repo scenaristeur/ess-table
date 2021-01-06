@@ -10,8 +10,18 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <SolidTrackSession />
   </div>
 </template>
+<script>
+export default {
+  name: 'App',
+  components: {
+    'SolidTrackSession': () => import('@/components/solid/SolidTrackSession'),
+    // 'Table': () => import('@/components/table/Table'),
+  },
+}
+</script>
 
 <style>
 #app {

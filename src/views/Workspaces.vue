@@ -17,6 +17,8 @@
 
   </b-table>
 
+  Storage : {{ storage }}
+
 </div>
 </template>
 
@@ -47,6 +49,10 @@ export default {
   computed:{
     workspaces: {
       get: function() { return this.$store.state.table.workspaces},
+      set: function() {}
+    },
+    storage: {
+      get: function() { return this.$store.state.solid.storage},
       set: function() {}
     },
   }
