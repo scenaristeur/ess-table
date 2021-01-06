@@ -2,6 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
+      <router-link to="/pod">Pod</router-link> |
+      <router-link to="/browser">Browser</router-link> |
+      <router-link to="/table">Table</router-link> |
+      <router-link to="/workspaces">Workspaces</router-link> |
       <router-link to="/templates">Templates</router-link> |
       <router-link to="/about">About</router-link>
     </div>

@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <SolidLoginButton />
-    <Table />
+    <!-- <Table /> -->
     <HelloWorld msg="Welcome to Ess-table WebApp based on Solid Specifications"/>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   components: {
     HelloWorld,
     'SolidLoginButton': () => import('@/components/solid/SolidLoginButton'),
-    'Table': () => import('@/components/table/Table'),
+    // 'Table': () => import('@/components/table/Table'),
   },
 }
 </script>
