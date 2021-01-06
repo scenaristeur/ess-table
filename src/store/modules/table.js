@@ -2,7 +2,8 @@
 
 // initial state
 const state = () => ({
-  workspaces: [
+  workspaces:[],
+  workspaces1: [
     { name: 'Solid', bases: [
       { name: 'Base1', tables: [
         { name: 'Table1', records: [

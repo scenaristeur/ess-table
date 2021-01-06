@@ -57,8 +57,8 @@ export default {
   },
   methods: {
     async add(){
-      this.workspaces.unshift({name: 'new workspace', bases:[], url: "" })
-      this.$store.commit('table/setWorkspaces', this.workspaces)
+    //  this.workspaces.unshift({name: 'new workspace', bases:[], url: "" })
+    //  this.$store.commit('table/setWorkspaces', this.workspaces)
       let file = this.path+uuidv4()+'.ttl'
       var dateObj = new Date();
       var date = dateObj.toISOString()
@@ -66,9 +66,10 @@ export default {
       @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
       @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
       @prefix dct: <http://purl.org/dc/terms/>.
+      @prefix dbo: <http://dbpedia.org/ontology/>.
 
       <> rdfs:label "New Workspace".
-      <> rdf:type "Workspace".
+      <> rdf:type dbo:Workspace.
       <> dct:created "${date}".`
       await fc.postFile( file, content, 'text/turtle' )
       console.log(file)
@@ -80,7 +81,14 @@ export default {
       this.workspaces = []
       this.folder.files.forEach(async(f) => {
         let name =  await ldflex[f.url].label
-        this.workspaces.push({name: `${name}`, url:f.url, bases:[]})
+        let bases = []
+        for await (const base of ldflex[f.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
+
+          bases.push(`${base}`)
+        }
+        console.log("b",bases)
+        let ws =   {name: `${name}`, url:f.url, bases:bases}
+        this.workspaces.push(ws)
       });
       console.log(this.workspaces)
 
