@@ -2,7 +2,7 @@
   <div class="container">
     TABLE
     <EditableSpan v-model="table.name" />
-    <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a row</b-button>
+    <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a record</b-button>
 
     <b-table
     hover
@@ -36,10 +36,10 @@ export default {
   data() {
     return {
       items: [
-        { name: 'record1', fields: "?", url: ""},
-        { name: 'record2', fields: "?", url: ""},
-        { name: 'record3', fields: "?", url: ""},
-        { name: 'record4', fields: "?", url: ""}
+        { name: 'record1', notes: [], attachements: []},
+        { name: 'record2', notes: [], attachements: []},
+        { name: 'record3', notes: [], attachements: []},
+        { name: 'record4', notes: [], attachements: []},
       ],
       record:{}
     }

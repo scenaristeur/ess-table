@@ -3,430 +3,646 @@
 // initial state
 const state = () => ({
   workspaces: [
-    { name: 'Disckerson', bases: [
+    { name: 'Solid', bases: [
       { name: 'Base1', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base2', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base3', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base5', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""}
     ], url: ""},
+    { name: 'Ess', bases: [
+      { name: 'Base1', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""},
+      { name: 'Base2', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""},
+      { name: 'Base3', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""},
+      { name: 'Base5', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""}
+    ], url: ""},
+
+    { name: 'Bebop', bases: [
+      { name: 'Base1', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""},
+      { name: 'Base2', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""},
+      { name: 'Base3', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""},
+      { name: 'Base5', tables: [
+        { name: 'Table1', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table2', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table3', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""},
+        { name: 'Table5', records: [
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
+        ], fields: "?", url: ""}
+      ], url: ""}
+    ], url: ""},
+
     { name: 'Larsen', bases: [
       { name: 'Base1', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base2', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base3', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base5', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""}
     ], url: ""},
+
     { name: 'Geneva', bases: [
       { name: 'Base1', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base2', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base3', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base5', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""}
     ], url: ""},
+
     { name: 'Jami', bases: [
       { name: 'Base1', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base2', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base3', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""},
       { name: 'Base5', tables: [
         { name: 'Table1', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table2', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table3', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""},
         { name: 'Table5', records: [
-          { name: 'record1', fields: "?", url: ""},
-          { name: 'record2', fields: "?", url: ""},
-          { name: 'record3', fields: "?", url: ""},
-          { name: 'record4', fields: "?", url: ""}
+          { name: 'record1', notes: [], attachements: []},
+          { name: 'record2', notes: [], attachements: []},
+          { name: 'record3', notes: [], attachements: []},
+          { name: 'record4', notes: [], attachements: []}
         ], fields: "?", url: ""}
       ], url: ""}
-    ], url: ""}
+    ], url: ""},
   ],
   workspace: {},
   base: {},
