@@ -34,6 +34,8 @@
 // @prefix sp: <http://www.w3.org/ns/pim/space#>.
 // @prefix n0: <http://xmlns.com/foaf/0.1/>.
 // @prefix dct: <http://purl.org/dc/terms/>.
+import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
+
 import auth from 'solid-auth-client';
 import FC from 'solid-file-client'
 const fc = new FC( auth )
@@ -76,9 +78,11 @@ export default {
       this.folder = await fc.readFolder(this.path)
       console.log(this.folder.files)
       this.workspaces = []
-      this.folder.files.forEach((f) => {
-        this.workspaces.push({name: f.name, url:f.url, bases:[]})
+      this.folder.files.forEach(async(f) => {
+        let name =  await ldflex[f.url].label
+        this.workspaces.push({name: `${name}`, url:f.url, bases:[]})
       });
+      console.log(this.workspaces)
 
     },
     onRowSelected(r){
@@ -92,7 +96,7 @@ export default {
   },
   watch: {
     async path () {
-      if (this.privacy != null){
+      if (this.privacy != null && this.storage != null){
         if (! await fc.itemExists( this.path )){
           await fc.createFolder(this.path)
         }
