@@ -28,6 +28,7 @@ npm run build
 ```
 
 ### Build and publish on gh-pages
+first commit : ```git add dist -f && git commit -m "Initial dist subtree commit"```
 ```
 npm run git -- "modif"
 ```
