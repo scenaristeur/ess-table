@@ -1,7 +1,15 @@
 <template>
   <div class="container">
-TABLE
-<b-table striped hover :items="items"></b-table>
+    TABLE
+    <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a row</b-button>
+
+    <b-table
+    hover
+    :items="items"
+    selectable
+    select-mode="single"
+    selected-variant="primary"
+    @row-selected="onRowSelected"></b-table>
   </div>
 </template>
 
@@ -14,17 +22,23 @@ TABLE
 export default {
   name: 'Table',
   data() {
-      return {
-        items: [
-          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-          { age: 38, first_name: 'Jami', last_name: 'Carney' }
-        ]
-      }
-    },
+    return {
+      items: [
+        { name: 'row1', rows: 8, fields: "?", url: ""},
+        { name: 'row2', rows: 3, fields: "?", url: ""},
+        { name: 'row3', rows: 0, fields: "?", url: ""},
+        { name: 'row4', rows: 65, fields: "?", url: ""}
+      ]
+    }
+  },
   methods: {
-
+    add(){
+      this.items.unshift({name: 'new row', rows:0, fields: "?", url: "" })
+    },
+    onRowSelected(r){
+      console.log(r)
+      this.$router.push('Table')
     }
   }
-  </script>
+}
+</script>

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    Base
+    Base : {{ base.name }} / {{base.tables.length}} tables
 
-    <b-button pill variant="outline-secondary" @click="add_workspace"><b-icon-plus></b-icon-plus> Add a table</b-button>
+    <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a table</b-button>
     <b-table
     hover
-    :items="items"
+    :items="base.tables"
      selectable
      select-mode="single"
      selected-variant="primary"
@@ -24,22 +24,28 @@ export default {
   name: 'Base',
   data() {
     return {
-      items: [
-        { name: 'Table1', rows: 8, fields: "?", url: ""},
-        { name: 'Table2', rows: 3, fields: "?", url: ""},
-        { name: 'Table3', rows: 0, fields: "?", url: ""},
-        { name: 'Table5', rows: 65, fields: "?", url: ""}
-      ]
+      // items: [
+        // { name: 'Table1', rows: 8, fields: "?", url: ""},
+        // { name: 'Table2', rows: 3, fields: "?", url: ""},
+        // { name: 'Table3', rows: 0, fields: "?", url: ""},
+        // { name: 'Table5', rows: 65, fields: "?", url: ""}
+      // ]
     }
   },
   methods: {
-    add_workspace(){
+    add(){
       this.items.unshift({name: 'new table', rows:0, fields: "?", url: "" })
     },
     onRowSelected(r){
       console.log(r)
           this.$router.push('Table')
     }
+  },
+  computed:{
+    base: {
+      get: function() { return this.$store.state.table.base},
+      set: function() {}
+    },
   }
 }
 </script>
