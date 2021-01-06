@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     TABLE
+    <EditableSpan v-model="table.name" />
     <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a row</b-button>
 
     <b-table
@@ -9,8 +10,16 @@
     selectable
     select-mode="single"
     selected-variant="primary"
-    @row-selected="onRowSelected"></b-table>
-  </div>
+    @row-selected="onRecordSelected"></b-table>
+
+    <b-modal id="modal-record"
+    @ok="onValidModal">
+    <template #modal-title>
+      <EditableSpan v-model="record.name" />
+    </template>
+    <p class="my-4">Hello from modal!</p>
+  </b-modal>
+</div>
 </template>
 
 <script>
@@ -21,24 +30,41 @@
 
 export default {
   name: 'Table',
+  components: {
+    'EditableSpan': () => import('@/components/basic/EditableSpan'),
+  },
   data() {
     return {
       items: [
-        { name: 'row1', rows: 8, fields: "?", url: ""},
-        { name: 'row2', rows: 3, fields: "?", url: ""},
-        { name: 'row3', rows: 0, fields: "?", url: ""},
-        { name: 'row4', rows: 65, fields: "?", url: ""}
-      ]
+        { name: 'record1', fields: "?", url: ""},
+        { name: 'record2', fields: "?", url: ""},
+        { name: 'record3', fields: "?", url: ""},
+        { name: 'record4', fields: "?", url: ""}
+      ],
+      record:{}
     }
   },
   methods: {
     add(){
-      this.items.unshift({name: 'new row', rows:0, fields: "?", url: "" })
+      this.items.unshift({name: 'new record', fields: "?", url: "" })
     },
-    onRowSelected(r){
+    onValidModal(){
+      console.log(this.record)
+    },
+    onRecordSelected(r){
       console.log(r)
-      this.$router.push('Table')
+      if (r.length > 0){
+        this.record = r[0]
+        this.$bvModal.show('modal-record')
+      }
+      //  this.$router.push('Row')
     }
+  },
+  computed:{
+    table: {
+      get: function() { return this.$store.state.table.table},
+      set: function() {}
+    },
   }
 }
 </script>

@@ -9,6 +9,7 @@
 - https://bootstrap-vue.org/docs/components/table
 - markdown https://fr.vuejs.org/v2/examples/index.html
 - https://fr.vuejs.org/v2/examples/commits.html
+- medium like p editable https://stackoverflow.com/questions/53899676/vue-2-contenteditable-with-v-model
 
 ## Project setup / Cloner le projet
 ```

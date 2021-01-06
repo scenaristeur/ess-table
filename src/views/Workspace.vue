@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    Workspace {{ workspace.name }} / {{ workspace.bases.length}} bases
+    Workspace
+      <EditableSpan v-model="workspace.name" /> / {{ workspace.bases.length}} bases
 
     <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a base</b-button>
     <br>
@@ -29,6 +30,9 @@
 
 export default {
   name: 'Workspace',
+  components: {
+    'EditableSpan': () => import('@/components/basic/EditableSpan'),
+  },
   data() {
     return {
     //  workspace: {},

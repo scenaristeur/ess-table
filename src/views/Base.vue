@@ -1,17 +1,21 @@
 <template>
   <div class="container">
-    Base : {{ base.name }} / {{base.tables.length}} tables
+    Base :       <EditableSpan v-model="base.name" /> / {{base.tables.length}} tables
 
     <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a table</b-button>
     <b-table
     hover
     :items="base.tables"
-     selectable
-     select-mode="single"
-     selected-variant="primary"
-      @row-selected="onRowSelected"></b-table>
+    selectable
+    select-mode="single"
+    selected-variant="primary"
+    @row-selected="onRowSelected">
+    <template #cell(records)="row">
+      {{row.item.records.length}}
+    </template>
+  </b-table>
 
-  </div>
+</div>
 </template>
 
 <script>
@@ -22,23 +26,28 @@
 
 export default {
   name: 'Base',
+  components: {
+    'EditableSpan': () => import('@/components/basic/EditableSpan'),
+  },
   data() {
     return {
       // items: [
-        // { name: 'Table1', rows: 8, fields: "?", url: ""},
-        // { name: 'Table2', rows: 3, fields: "?", url: ""},
-        // { name: 'Table3', rows: 0, fields: "?", url: ""},
-        // { name: 'Table5', rows: 65, fields: "?", url: ""}
+      // { name: 'Table1', rows: 8, fields: "?", url: ""},
+      // { name: 'Table2', rows: 3, fields: "?", url: ""},
+      // { name: 'Table3', rows: 0, fields: "?", url: ""},
+      // { name: 'Table5', rows: 65, fields: "?", url: ""}
       // ]
     }
   },
   methods: {
     add(){
-      this.items.unshift({name: 'new table', rows:0, fields: "?", url: "" })
+      this.base.tables.unshift({name: 'new table', rows:[], fields: [], url: "" })
+      this.$store.commit('table/setBase', this.base)
     },
     onRowSelected(r){
       console.log(r)
-          this.$router.push('Table')
+      this.$store.commit('table/setTable', r[0])
+      this.$router.push('Table')
     }
   },
   computed:{
