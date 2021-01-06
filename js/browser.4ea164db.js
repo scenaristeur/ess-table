@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["browser"],{d9ad:function(e,n,s){"use strict";s.r(n);var t=function(){var e=this,n=e.$createElement,s=e._self._c||n;return s("div",{staticClass:"home"},[e._v(" Browser ")])},o=[],r={name:"Pod",components:{}},a=r,c=s("2877"),l=Object(c["a"])(a,t,o,!1,null,null,null);n["default"]=l.exports}}]);
-//# sourceMappingURL=browser.4ea164db.js.map
