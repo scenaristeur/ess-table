@@ -16,6 +16,9 @@
     select-mode="single"
     selected-variant="primary"
     @row-selected="onRowSelected">
+    <template #cell(url)="row">
+      <a :href="row.item.url" target="_blank">{{row.item.url.substring(row.item.url.lastIndexOf('/') + 1)}}</a>
+    </template>
     <template #cell(tables)="row">
       {{row.item.tables.length}}
     </template>
