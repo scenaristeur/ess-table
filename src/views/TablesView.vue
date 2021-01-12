@@ -1,6 +1,13 @@
 <template>
   <b-container>
-
+Base {{ base }}
+<h2>{{name}}
+  <b-button variant="outline-info" v-b-modal.modal-base size="sm">
+    <b-icon-pen>
+    </b-icon-pen>
+  </b-button>
+</h2>
+<hr>
     <b-card no-body>
     <b-tabs card>
       <!-- Render Tabs, supply a unique `key` to each tab -->
@@ -43,28 +50,63 @@
 
     {{tables}}
 
+    <b-modal id="modal-base" title="Rename" @ok="edit_base_name">
+      <b-form-input v-model="name" placeholder="Enter the name of the base"></b-form-input>
+    </b-modal>
 
   </b-container>
 </template>
 
 <script>
+import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
+
+
 export default {
   name: 'TablesView',
   components: {
     'TableView': () => import('@/views/TableView'),
     'Label': () => import('@/components/basic/Label')
   },
+  data() {
+    return {
+      name: ""
+    }
+  },
+async created() {
+    //do something after creating vue instance
+    let name =  await ldflex[this.base].label
+    this.name = `${name}`
+  },
+  methods: {
+    async edit_base_name(){
+      console.log(this.name)
+      await ldflex[this.base].label.set(this.name)
+    //  let path = this.storage+this.privacy+'/table/workspaces/'
+      //console.log(path)
+    //  this.$store.dispatch('table/getWorkspaces', path)
+    },
+    newTable() {
+      console.log("new table")
+    }
+  },
+  watch:{
+    async base(){
+    //  this.$store.dispatch('table/getBases', this.workspace)
+      let name =  await ldflex[this.base].label
+      this.name = `${name}`
+    }
+  },
   computed:{
     tables: {
       get: function() { return this.$store.state.table.tables},
       set: function() {}
     },
+    base: {
+      get: function() { return this.$store.state.table.base},
+      set: function() {}
+    },
   },
-  methods: {
-    newTable() {
-      console.log("new table")
-    }
-  }
+
 }
 
 </script>

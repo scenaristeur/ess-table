@@ -74,11 +74,11 @@ export default {
   methods: {
     async add(){
       let base = {path: this.storage+this.privacy+'/table/bases/', name:"___base name___", workspace: this.workspace}
-      console.log(base)
+    //  console.log(base)
       this.$store.dispatch('table/addBase', base)
     },
     showTables(b) {
-      console.log(b)
+      //console.log(b)
       this.$store.dispatch('table/setBase', b)
       this.$router.push('Tables')
     },

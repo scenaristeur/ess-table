@@ -57,9 +57,8 @@ const actions = {
     <> rdfs:label "${base.name}".
     <> rdf:type dbo:DataBase.
     <> dct:created "${date}".`
-    console.log(file, base.workspace)
+    //console.log(file, base.workspace)
     await fc.postFile( file, content, 'text/turtle' )
-
     await ldflex[base.workspace]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart'].add(namedNode(file))
     await ldflex[file]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/partOf'].add(namedNode(base.workspace))
     //  this.update()
