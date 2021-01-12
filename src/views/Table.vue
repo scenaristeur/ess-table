@@ -3,6 +3,7 @@
     TABLE
     <EditableSpan v-model="table.name" />
     <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a record</b-button>
+
     Privacy: <b-button @click="togglePrivacy" size="sm" variant="primary">{{ privacy }}</b-button><br>
 
     <b-table
@@ -13,22 +14,22 @@
     selected-variant="primary"
     @row-selected="onRecordSelected">
     <template #cell(url)="row">
-      <a :href="row.item.url" target="_blank">{{row.item.url.substring(row.item.url.lastIndexOf('/') + 1)}}</a>
+      <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
     </template>
   </b-table>
 
   Storage : {{ storage }}<br>
   Path: {{path}}
 
-  <b-modal id="modal-record"
+  <b-modal id="modal-record1"
   @ok="onValidModal">
-  <template #modal-title>
+  <template #modal-title1>
     <EditableSpan v-model="record.name" />
   </template>
 
 
-  <b-button pill size="sm" v-b-modal.modal-note><b-icon-plus></b-icon-plus> Add a note</b-button>
-  <b-button pill variant="outline-primary" v-b-modal.modal-files size="sm"><b-icon-plus></b-icon-plus> Add images files</b-button>
+  <b-button pill size="sm" v-b-modal.modal-note1><b-icon-plus></b-icon-plus> Add a note</b-button>
+  <b-button pill variant="outline-primary" v-b-modal.modal-files1 size="sm"><b-icon-plus></b-icon-plus> Add images files</b-button>
 
 
 
@@ -38,7 +39,7 @@
 </b-modal>
 
 
-<b-modal id="modal-note" title="New Note" @ok="addNote">
+<b-modal id="modal-note1" title="New Note" @ok="addNote">
   <b-form-textarea
   id="textarea"
   v-model="note"
@@ -48,7 +49,7 @@
   ></b-form-textarea>
 </b-modal>
 
-<b-modal id="modal-files" title="Add files" @ok="addFiles">
+<b-modal id="modal-files1" title="Add files" @ok="addFiles">
   <b-form-file multiple
     accept="*"
     v-model="files"
@@ -209,7 +210,7 @@ export default {
       console.log(r)
       if (r.length > 0){
         this.record = r[0]
-        this.$bvModal.show('modal-record')
+        this.$bvModal.show('modal-record1')
       }
       //  this.$router.push('Row')
     },

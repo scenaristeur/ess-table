@@ -1,0 +1,15 @@
+import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
+
+
+export default {
+  methods: {
+    async Label(url) {
+      let label = await ldflex[url].label
+      console.log("Label",label)
+      let lb = `${label}`
+      return lb
+    }
+  }
+
+
+}

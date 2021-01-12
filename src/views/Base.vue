@@ -3,6 +3,8 @@
     Base :       <EditableSpan v-model="base.name" /> / {{base.tables.length}} tables
 
     <b-button pill variant="outline-secondary" @click="add"><b-icon-plus></b-icon-plus> Add a table</b-button>
+    <b-button pill variant="outline-secondary" disabled><b-icon-plus></b-icon-plus> Import spreadsheet</b-button>
+
     Privacy: <b-button @click="togglePrivacy" size="sm" variant="primary">{{ privacy }}</b-button><br>
 
     <b-table
@@ -13,7 +15,7 @@
     selected-variant="primary"
     @row-selected="onRowSelected">
     <template #cell(url)="row">
-      <a :href="row.item.url" target="_blank">{{row.item.url.substring(row.item.url.lastIndexOf('/') + 1)}}</a>
+      <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
     </template>
     <template #cell(records)="row">
       {{row.item.records.length}}
@@ -56,11 +58,11 @@ export default {
     this.workspace = this.$store.state.table.workspace
     this.base = this.$store.state.table.base
     console.log(this.workspace)
-        this.privacy = 'public'
-        this.update()
+    this.privacy = 'public'
+    this.update()
   },
   methods: {
-  async add(){
+    async add(){
       // this.base.tables.unshift({name: 'new table', rows:[], fields: [], url: "" })
       // this.$store.commit('table/setBase', this.base)
       let file = this.path+uuidv4()+'.ttl'
@@ -94,7 +96,7 @@ export default {
         console.log("r",records)
         let table =   {name: `${name}`, url:f.url, records:records}
         this.tables.push(table)
-      //  this.workspaces.push(base)
+        //  this.workspaces.push(base)
       });
       //console.log(this.workspaces)
 

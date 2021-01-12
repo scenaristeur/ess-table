@@ -11,6 +11,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/tables',
+    name: 'Tables',
+    component: () => import(/* webpackChunkName: "tablesviews" */ '../views/TablesView.vue')
+  },
+  {
     path: '/pod',
     name: 'Pod',
     // route level code-splitting

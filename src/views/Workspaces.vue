@@ -13,7 +13,7 @@
     selected-variant="primary"
     @row-selected="onRowSelected">
     <template #cell(url)="row">
-      <a :href="row.item.url" target="_blank">{{row.item.url.substring(row.item.url.lastIndexOf('/') + 1)}}</a>
+      <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
     </template>
     <template #cell(bases)="row">
       {{row.item.bases.length}}

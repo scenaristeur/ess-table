@@ -17,7 +17,7 @@
     selected-variant="primary"
     @row-selected="onRowSelected">
     <template #cell(url)="row">
-      <a :href="row.item.url" target="_blank">{{row.item.url.substring(row.item.url.lastIndexOf('/') + 1)}}</a>
+      <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
     </template>
     <template #cell(tables)="row">
       {{row.item.tables.length}}
@@ -94,7 +94,7 @@ export default {
           tables.push(`${table}`)
         }
         console.log("t",tables)
-        let base =   {name: `${name}`, url:f.url, tables:tables}
+        let base =   {name: `${name}`, tables:tables, url:f.url}
         this.bases.push(base)
       //  this.workspaces.push(base)
       });
@@ -109,7 +109,8 @@ export default {
     togglePrivacy(){
       this.privacy = this.privacy == 'public' ? 'private' : 'public'
     }
-  },  watch: {
+  },
+    watch: {
       async path () {
         if (this.privacy != null && this.storage != null){
           if (! await fc.itemExists( this.path )){
