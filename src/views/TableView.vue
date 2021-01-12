@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-button pill variant="outline-primary" size="sm">Edit Fields</b-button>
-    <b-button pill variant="outline-primary" size="sm">Add Record</b-button>
+    <b-button pill variant="outline-primary" size="sm" @click="add">Add Record</b-button>
 
     <b-table
     hover
@@ -55,6 +55,7 @@ export default {
 
   methods: {
     async getRecords(){
+      console.log('getrec')
       this.records = []
       for await (const record of ldflex[this.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
         let label = await ldflex[record].label
@@ -77,7 +78,7 @@ export default {
 
       async add(){
         //  this.items.unshift({name: 'new record', fields: "?", url: "" })
-        let file = this.path+uuidv4()+'.ttl'
+        let file = this.storage+this.privacy+'/table/records/'+uuidv4()+'.ttl'
         var dateObj = new Date();
         var date = dateObj.toISOString()
         let content = `@prefix : <#>.
@@ -86,36 +87,37 @@ export default {
         @prefix dct: <http://purl.org/dc/terms/>.
         @prefix dbo: <http://dbpedia.org/ontology/>.
 
-        <> rdfs:label "New Record".
+        <> rdfs:label "__New Record__".
         <> rdf:type dbo:Record.
         <> dct:created "${date}".`
         await fc.postFile( file, content, 'text/turtle' )
-        console.log(file)
-        await ldflex[this.table.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart'].add(namedNode(file))
-        await ldflex[file]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/partOf'].add(namedNode(this.table.url))
-        this.update()
+        console.log(file, this.url)
+        await ldflex[this.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart'].add(namedNode(file))
+        await ldflex[file]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/partOf'].add(namedNode(this.url))
+      //  this.update()
+      this.getRecords()
       },
-      async update(){
-        this.folder = await fc.readFolder(this.path)
-        console.log(this.folder.files)
-        this.records = []
-        this.folder.files.forEach(async(f) => {
-          let name =  await ldflex[f.url].label
-          let notes = []
-          let attachments = []
-          for await (const note of ldflex[f.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasNote']) {
-            notes.push(`${note}`)
-          }
-          for await (const attachment of ldflex[f.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasAttachment']) {
-            attachments.push(`${attachment}`)
-          }
-          console.log("n",notes)
-          let record =   {name: `${name}`, notes: notes, attachments: attachments, url:f.url}
-          this.records.push(record)
-          //  this.workspaces.push(base)
-        });
-        //console.log(this.workspaces)
-      },
+      // async update(){
+      //   this.folder = await fc.readFolder(this.path)
+      //   console.log(this.folder.files)
+      //   this.records = []
+      //   this.folder.files.forEach(async(f) => {
+      //     let name =  await ldflex[f.url].label
+      //     let notes = []
+      //     let attachments = []
+      //     for await (const note of ldflex[f.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasNote']) {
+      //       notes.push(`${note}`)
+      //     }
+      //     for await (const attachment of ldflex[f.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasAttachment']) {
+      //       attachments.push(`${attachment}`)
+      //     }
+      //     console.log("n",notes)
+      //     let record =   {name: `${name}`, notes: notes, attachments: attachments, url:f.url}
+      //     this.records.push(record)
+      //     //  this.workspaces.push(base)
+      //   });
+      //   //console.log(this.workspaces)
+      // },
 
     },
     watch:{
@@ -126,10 +128,20 @@ export default {
         console.log(this.recordTick)
       }
     },
+      computed:{
+        storage: {
+          get: function() { return this.$store.state.solid.storage},
+          set: function() {}
+        },
+        privacy: {
+          get: function() { return this.$store.state.table.privacy},
+          set: function() {}
+        },
     recordTick: {
       get: function() { return this.$store.state.table.recordTick},
       set: function() {}
     },
+  }
 
   }
   </script>
