@@ -1,5 +1,8 @@
 <template>
   <b-container>
+<h2>{{name}}</h2>
+    <!-- <EditableSpan v-model="name" />  -->
+    <hr>
     BAses View
     {{workspace}}
     <br>
@@ -25,32 +28,42 @@
     </ul>
     <!-- <b-card-group deck>
 
-      <b-card v-for="(b,i) in bases" :key=i
-      style="min-width: 10rem;">
-      <b-card-header>Tit</b-card-header>
-      <blockquote class="blockquote mb-0">
-        <p>{{b}}</p>
+    <b-card v-for="(b,i) in bases" :key=i
+    style="min-width: 10rem;">
+    <b-card-header>Tit</b-card-header>
+    <blockquote class="blockquote mb-0">
+    <p>{{b}}</p>
 
-      </blockquote>
-    </b-card>
+  </blockquote>
+</b-card>
 
-  </b-card-group> -->
+</b-card-group> -->
 
 
 </b-container>
 </template>
 
 <script>
+import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
+
+
 export default {
   name: 'BasesView',
   components: {
-     'Label': () => import('@/components/basic/Label'),
+    'Label': () => import('@/components/basic/Label'),
+  //  'EditableSpan': () => import('@/components/basic/EditableSpan')
   },
   data() {
     return {
-      //workspace:""
+      name: ""
     }
   },
+  // async created() {
+  //   //do something after creating vue instance
+  //   let name =  await ldflex[this.workspace].label
+  //   this.name = `${name}`
+  //   console.log("name", this.name)
+  // },
   methods: {
     showTables(b) {
       console.log(b)
@@ -59,8 +72,11 @@ export default {
     }
   },
   watch:{
-    workspace(){
+    async  workspace(){
       this.$store.dispatch('table/getBases', this.workspace)
+      let name =  await ldflex[this.workspace].label
+      this.name = `${name}`
+      console.log("name", this.name)
     }
   },
   computed:{

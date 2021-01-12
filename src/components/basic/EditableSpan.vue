@@ -1,12 +1,13 @@
 <template>
   <span
-    ref="editable"
-    contenteditable
-    v-on="listeners" />
+  ref="editable"
+  contenteditable
+  v-on="listeners" />
 </template>
 
 <script>
 export default {
+  name:'EditableSpan',
   props: {
     value: {
       type: String,
