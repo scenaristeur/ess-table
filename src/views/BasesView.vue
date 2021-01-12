@@ -13,16 +13,16 @@
     <ul>
       <li v-for="(b,i) in bases" :key=i class="mb-2" @click="showTables(b)">
         <b-button variant="outline-info">
-          <b-icon-pen class="border border-info rounded p-2" font-scale="4" variant="info">
-          </b-icon-pen>
+          <b-icon-pen class="border border-info rounded p-2" font-scale="3" variant="info">
+          </b-icon-pen><br>
           <Label :url="b" />
         </b-button>
       </li>
 
       <li>
         <b-button variant="secondary" @click="add">
-          <b-icon-plus class="border border-secondary rounded p-2" font-scale="4" variant="secondary">
-          </b-icon-plus>
+          <b-icon-plus class="border border-secondary rounded p-2" font-scale="3" variant="secondary">
+          </b-icon-plus><br>
           Add a base
         </b-button>
       </li>

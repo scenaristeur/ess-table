@@ -104,7 +104,7 @@ export default {
       console.log(r)
       if (r.length > 0){
         this.record = r[0]
-        this.$bvModal.show('modal-record-')
+        this.$bvModal.show('modal-record')
       }
       //  this.$router.push('Row')
     },
