@@ -20,8 +20,8 @@
       </li>
 
       <li>
-        <b-button variant="secondary" @click="add">
-          <b-icon-plus class="border border-secondary rounded p-2" font-scale="3" variant="secondary">
+        <b-button variant="outline-primary" @click="add">
+          <b-icon-plus class="border border-primary rounded p-2" font-scale="2" variant="primary">
           </b-icon-plus><br>
           Add a base
         </b-button>

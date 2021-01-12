@@ -15,7 +15,7 @@
         <b-tab v-for="(t,i) in tables" :key="'dyn-tab-' + i">
           <template #title>
             <small><Label :url="t" :tick='tick' />
-              <b-button variant="outline-info" v-b-modal.modal-table size="sm" @click="setTableName(t)">
+              <b-button variant="outline-info" v-b-modal.modal-table size="sm" class="ml-2" @click="setTableName(t)">
                 <b-icon-pen btn>
                 </b-icon-pen>
               </b-button>
@@ -66,18 +66,20 @@
     <b-form-input v-model="table_name" placeholder="Enter the name of the table"></b-form-input>
   </b-modal>
 
+    <RecordModal />
+
 </b-container>
 </template>
 
 <script>
 import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
 
-
 export default {
   name: 'TablesView',
   components: {
     'TableView': () => import('@/views/TableView'),
-    'Label': () => import('@/components/basic/Label')
+    'Label': () => import('@/components/basic/Label'),
+   'RecordModal': () => import('@/views/RecordModal')
   },
   data() {
     return {
@@ -149,6 +151,7 @@ export default {
       get: function() { return this.$store.state.table.privacy},
       set: function() {}
     },
+
   },
 
 }

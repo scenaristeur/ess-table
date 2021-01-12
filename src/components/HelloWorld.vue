@@ -2,7 +2,7 @@
   <div>
     <b-container  fluid>
       <b-row>
-        <b-col cols="4">
+        <b-col>
           <WorkspacesView />
         </b-col>
         <b-col>
