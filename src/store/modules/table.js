@@ -4,6 +4,7 @@ import FC from 'solid-file-client'
 const fc = new FC( auth )
 import { v4 as uuidv4 } from 'uuid';
 import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
+import { namedNode } from "@rdfjs/data-model";
 
 // initial state
 const state = () => ({
@@ -38,11 +39,34 @@ const actions = {
     await fc.postFile( file, content, 'text/turtle' )
     console.log(file)
     //  this.updateWorkspaces(file)
-  //  context.getWorkspaces()
-  dispatch('getWorkspaces')
+    //  context.getWorkspaces()
+    dispatch('getWorkspaces')
+  },
+  async addBase({dispatch}, base){
+    //  this.workspace.bases.unshift({name: 'new base', tables:[], url: "" })
+    //  this.$store.commit('table/setWorkspaces', this.workspaces)
+    let file = base.path+uuidv4()+'.ttl'
+    var dateObj = new Date();
+    var date = dateObj.toISOString()
+    let content = `@prefix : <#>.
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+    @prefix dct: <http://purl.org/dc/terms/>.
+    @prefix dbo: <http://dbpedia.org/ontology/>.
+
+    <> rdfs:label "${base.name}".
+    <> rdf:type dbo:DataBase.
+    <> dct:created "${date}".`
+    console.log(file, base.workspace)
+    await fc.postFile( file, content, 'text/turtle' )
+
+    await ldflex[base.workspace]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart'].add(namedNode(file))
+    await ldflex[file]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/partOf'].add(namedNode(base.workspace))
+    //  this.update()
+    dispatch('getBases')
   },
   async getWorkspaces(context, url = context.rootState.solid.storage+context.state.privacy+'/table/workspaces/'){
-    console.log("UPDATE", url)
+    //  console.log("UPDATE", url)
     if (! await fc.itemExists( url )){
       await fc.createFolder(url)
     }
@@ -63,19 +87,21 @@ const actions = {
     // // });
     // console.log(workspaces)
   },
-  async getBases(context, url){
+  async getBases(context, url = context.state.workspace){
+    //console.log(url)
     let bases = []
-      for await (const base of ldflex[url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
-        bases.push(`${base}`)
-      }
+    for await (const base of ldflex[url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
+      bases.push(`${base}`)
+    }
+    //  console.log('bases',bases)
     context.commit('setBases', bases)
   },
   async setBase(context, url){
     context.commit('setBase', url)
     let tables = []
-      for await (const table of ldflex[url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
-        tables.push(`${table}`)
-      }
+    for await (const table of ldflex[url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
+      tables.push(`${table}`)
+    }
     context.commit('setTables', tables)
   },
 

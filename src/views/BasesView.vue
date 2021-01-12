@@ -20,7 +20,7 @@
       </li>
 
       <li>
-        <b-button variant="secondary">
+        <b-button variant="secondary" @click="add">
           <b-icon-plus class="border border-secondary rounded p-2" font-scale="4" variant="secondary">
           </b-icon-plus>
           Add a base
@@ -72,6 +72,11 @@ export default {
   //   console.log("name", this.name)
   // },
   methods: {
+    async add(){
+      let base = {path: this.storage+this.privacy+'/table/bases/', name:"___base name___", workspace: this.workspace}
+      console.log(base)
+      this.$store.dispatch('table/addBase', base)
+    },
     showTables(b) {
       console.log(b)
       this.$store.dispatch('table/setBase', b)
