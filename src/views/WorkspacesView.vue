@@ -13,7 +13,7 @@
       :key="w.url"
       button size="sm"
       @click="openWorkspace(w.url)">
-      <Label :url="w.url" :tick='tick'/>
+      <Label :url="w.url" :tick='tick' />
       <!-- <b-button pill variant="outline-primary" size="sm"><a :href="w.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button> -->
     </b-list-group-item>
   </b-list-group>

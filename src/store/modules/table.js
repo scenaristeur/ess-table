@@ -64,6 +64,26 @@ const actions = {
     //  this.update()
     dispatch('getBases')
   },
+  async addTable({dispatch}, table){
+    let file = table.path+uuidv4()+'.ttl'
+    var dateObj = new Date();
+    var date = dateObj.toISOString()
+    let content = `@prefix : <#>.
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+    @prefix dct: <http://purl.org/dc/terms/>.
+    @prefix dbo: <http://dbpedia.org/ontology/>.
+
+    <> rdfs:label "${table.name}".
+    <> rdf:type dbo:Table.
+    <> dct:created "${date}".`
+    await fc.postFile( file, content, 'text/turtle' )
+    console.log(file)
+    await ldflex[table.base]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart'].add(namedNode(file))
+    await ldflex[file]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/partOf'].add(namedNode(table.base))
+    //this.update()
+    dispatch('getTables')
+  },
   async getWorkspaces(context, url = context.rootState.solid.storage+context.state.privacy+'/table/workspaces/'){
     //  console.log("UPDATE", url)
     if (! await fc.itemExists( url )){
@@ -103,6 +123,13 @@ const actions = {
     }
     context.commit('setTables', tables)
   },
+  async getTables(context, url = context.state.base){
+    let tables = []
+    for await (const table of ldflex[url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
+      tables.push(`${table}`)
+    }
+    context.commit('setTables', tables)
+  }
 
 
 }
