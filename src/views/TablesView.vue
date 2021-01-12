@@ -47,16 +47,16 @@
   </b-card>
 
   <hr>
-  <b-tabs content-class="mt-3">
+  <!-- <b-tabs content-class="mt-3">
 
     <b-tab title="i" v-for="(t,i) in tables" :key="i" :active="i == 0">
       <TableView :url="t"/>
     </b-tab>
     <b-tab title="First"><p>I'm the first tab</p></b-tab>
     <b-tab title="Add a table"><p>I'm the second tab</p></b-tab>
-  </b-tabs>
+  </b-tabs> -->
 
-  {{tables}}
+  <!-- {{tables}} -->
 
   <b-modal id="modal-base" title="Rename" @ok="edit_base_name">
     <b-form-input v-model="name" placeholder="Enter the name of the base"></b-form-input>

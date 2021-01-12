@@ -1,9 +1,6 @@
 <template>
   <div>
-    tableview : {{url}}
 
-    <br>
-    {{records}}
     <b-table
     hover
     :items="records"
@@ -15,6 +12,14 @@
       <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
     </template>
   </b-table>
+
+
+
+  <a :href="url" target="_blank">table <b-icon-link45deg></b-icon-link45deg></a>
+
+
+  <br>
+  <!-- {{records}} -->
 
 
   <b-modal id="modal-record"
@@ -99,7 +104,7 @@ export default {
       console.log(r)
       if (r.length > 0){
         this.record = r[0]
-        this.$bvModal.show('modal-record')
+        this.$bvModal.show('modal-record-')
       }
       //  this.$router.push('Row')
     },
