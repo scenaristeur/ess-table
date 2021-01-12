@@ -1,13 +1,15 @@
 <template>
   <b-container>
-<h2>{{name}}</h2>
+    <h2>{{name}}
+      <b-button variant="outline-info" v-b-modal.modal-ws size="sm">
+        <b-icon-pen>
+        </b-icon-pen>
+      </b-button>
+    </h2>
+
+
     <!-- <EditableSpan v-model="name" />  -->
     <hr>
-    BAses View
-    {{workspace}}
-    <br>
-    <!-- {{ bases}} -->
-
     <ul>
       <li v-for="(b,i) in bases" :key=i class="mb-2" @click="showTables(b)">
         <b-button variant="outline-info">
@@ -26,6 +28,11 @@
       </li>
 
     </ul>
+<a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a>
+
+    <b-modal id="modal-ws" title="Rename" @ok="edit_ws_name">
+      <b-form-input v-model="name" placeholder="Enter the name of the workspace"></b-form-input>
+    </b-modal>
     <!-- <b-card-group deck>
 
     <b-card v-for="(b,i) in bases" :key=i
@@ -51,7 +58,7 @@ export default {
   name: 'BasesView',
   components: {
     'Label': () => import('@/components/basic/Label'),
-  //  'EditableSpan': () => import('@/components/basic/EditableSpan')
+    //  'EditableSpan': () => import('@/components/basic/EditableSpan')
   },
   data() {
     return {
@@ -69,6 +76,13 @@ export default {
       console.log(b)
       this.$store.dispatch('table/setBase', b)
       this.$router.push('Tables')
+    },
+    async edit_ws_name(){
+      console.log(this.name)
+      await ldflex[this.workspace].label.set(this.name)
+      let path = this.storage+this.privacy+'/table/workspaces/'
+      console.log(path)
+      this.$store.dispatch('table/getWorkspaces', path)
     }
   },
   watch:{
@@ -76,7 +90,6 @@ export default {
       this.$store.dispatch('table/getBases', this.workspace)
       let name =  await ldflex[this.workspace].label
       this.name = `${name}`
-      console.log("name", this.name)
     }
   },
   computed:{
@@ -86,6 +99,14 @@ export default {
     },
     bases: {
       get: function() { return this.$store.state.table.bases},
+      set: function() {}
+    },
+    storage: {
+      get: function() { return this.$store.state.solid.storage},
+      set: function() {}
+    },
+    privacy: {
+      get: function() { return this.$store.state.table.privacy},
       set: function() {}
     },
   }

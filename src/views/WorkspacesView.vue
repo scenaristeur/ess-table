@@ -13,8 +13,8 @@
       :key="w.url"
       button size="sm"
       @click="openWorkspace(w.url)">
-      <Label :url="w.url" />
-      <b-button pill variant="outline-primary" size="sm"><a :href="w.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
+      <Label :url="w.url" :tick='tick'/>
+      <!-- <b-button pill variant="outline-primary" size="sm"><a :href="w.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button> -->
     </b-list-group-item>
   </b-list-group>
 
@@ -32,13 +32,13 @@
 
 export default {
   name: 'Workspace',
-//  mixins: [solidMixin],
+  //  mixins: [solidMixin],
   components: {
-     'Label': () => import('@/components/basic/Label'),
+    'Label': () => import('@/components/basic/Label'),
   },
   data() {
     return {
-      //  privacy: null,
+      tick: new Date()
     }
   },
   created() {
@@ -46,10 +46,9 @@ export default {
   },
   methods: {
     async add(){
-      this.$store.dispatch('table/addWorkspace', {path: this.path, name:"new workspace name"})
+      this.$store.dispatch('table/addWorkspace', {path: this.path, name:"___workspace name___"})
     },
     openWorkspace(url){
-      console.log("ws",url)
       this.$store.commit('table/setWorkspace', url)
     },
     // onRowSelected(r){
@@ -62,7 +61,8 @@ export default {
     },
     getWorkspaces(){
       this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
-    }
+    },
+
 
   },
   watch: {
@@ -74,6 +74,10 @@ export default {
       console.log(this.storage+this.privacy)
       this.getWorkspaces()
     },
+    workspaces(){
+      console.log("must update workspaces in table", this.workspaces)
+      this.tick = new Date()
+    }
 
   },
 

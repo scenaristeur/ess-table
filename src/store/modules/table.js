@@ -13,7 +13,8 @@ const state = () => ({
   bases: [],
   base: {},
   tables: [],
-  table: {}
+  table: {},
+  tick_workspaces: new Date()
 })
 
 // getters
@@ -21,7 +22,7 @@ const getters = {}
 
 // actions
 const actions = {
-  async addWorkspace(state, ws){
+  async addWorkspace({dispatch}, ws){
     let file = ws.path+uuidv4()+'.ttl'
     var dateObj = new Date();
     var date = dateObj.toISOString()
@@ -37,8 +38,10 @@ const actions = {
     await fc.postFile( file, content, 'text/turtle' )
     console.log(file)
     //  this.updateWorkspaces(file)
+  //  context.getWorkspaces()
+  dispatch('getWorkspaces')
   },
-  async getWorkspaces(context, url){
+  async getWorkspaces(context, url = context.rootState.solid.storage+context.state.privacy+'/table/workspaces/'){
     console.log("UPDATE", url)
     if (! await fc.itemExists( url )){
       await fc.createFolder(url)
@@ -92,7 +95,6 @@ const mutations = {
     state.bases = b
   },
   setWorkspace(state, w){
-    console.log(w)
     state.workspace = w
   },
   setBase(state, b){
