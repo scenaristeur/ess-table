@@ -8,11 +8,7 @@
     </h2>
     <a :href="base" target="_blank">base <b-icon-link45deg></b-icon-link45deg></a>
 
-    <hr>
-    <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
-    <hr>
-    Fields : {{ fields }}
-    <hr>
+
     <b-card no-body>
       <b-tabs card>
         <!-- Render Tabs, supply a unique `key` to each tab -->
@@ -27,6 +23,10 @@
 
             </small>
           </template>
+          <hr>
+          <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
+          <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-new-field>Add a Field</b-button>
+
           <TableView :url="t" :fields="fields" />
           <!-- ProjetIOIOI {{ t }} -->
 
@@ -51,6 +51,8 @@
   </b-card>
 
   <hr>
+  Fields : {{ fields }}
+  <hr>
   <!-- <b-tabs content-class="mt-3">
 
   <b-tab title="i" v-for="(t,i) in tables" :key="i" :active="i == 0">
@@ -71,13 +73,45 @@
 </b-modal>
 
 <b-modal id="modal-fields" title="Fields" @ok="edit_fields">
-  Fields : {{ fields }}
-  <!-- <b-form-input v-model="" placeholder="Enter the name of the record"></b-form-input> -->
+
+  <div class="accordion" role="tablist">
+    <div v-for="(field, index) in fields" :key='index'>
+      <b-card no-body class="mb-1" v-if='field.modifiable != false'>
+
+        <b-card-header header-tag="header" class="p-1" role="tab">
+          <b-button block v-b-toggle="'accordion-'+index" variant="info">{{field.key}}</b-button>
+        </b-card-header>
+        <b-collapse v-bind:id="'accordion-'+index" visible accordion="my-accordion" role="tabpanel">
+          <b-card-body>
+            <b-card-text>
+              <b-input-group prepend="key">
+                <b-form-input v-model="field.key"></b-form-input>
+              </b-input-group>
+              <b-input-group prepend="type">
+                <b-form-select v-model="field.type" :options="field_types">
+                  <!-- <template #first>
+                  <b-form-select-option value="slt">Single Line Text</b-form-select-option>
+                </template> -->
+              </b-form-select>
+            </b-input-group>
+            <b-input-group prepend="default value">
+              <b-form-input v-model="field.default"></b-form-input>
+            </b-input-group>
+            {{ field }}
+          </b-card-text>
+        </b-card-body>
+      </b-collapse>
+
+    </b-card>
+  </div>
+</div>
+
+
+
+<!-- <b-form-input v-model="" placeholder="Enter the name of the record"></b-form-input> -->
 </b-modal>
 
 <RecordModal />
-
-
 
 </b-container>
 </template>
@@ -97,14 +131,20 @@ export default {
       name: "",
       table_name:"",
       tick: new Date(),
+      field_types: [
+        { value: 'single_line_text', text: 'Single Line Text' },
+        { value: 'single_select', text: 'Single Select' },
+        { value: 'link', text: 'Link to another Record or Resource' },
+        { value: 'number', text: 'Number' },
+      ],
       fields: [
         {
           key: 'label',
           sortable: true,
           modifiable: false,
           stickyColumn: true,
-           isRowHeader: true,
-            variant: 'primary'
+          isRowHeader: true,
+          variant: 'primary'
         },
         {
           key: 'notes',
@@ -127,20 +167,20 @@ export default {
           variant: 'secondary'
         },
         {key:'fill'},
-    {key:'fille'},
-    {key:'filld'},
-    {key:'fillz'},
-    {key:'filla'},
-    {key:'fille'},
-    {key:'filly'},
-    {key:'fillqwsx'},
-    {key:'filltry'},
-    {key:'fillsd'},
-    {key:'fillth'},
-    {key:'fillt'},
-    {key:'fillf'},
-    {key:'fillu'},
-    {key:'fillo'},
+        {key:'fille'},
+        {key:'filld'},
+        {key:'fillz'},
+        {key:'filla'},
+        {key:'fille'},
+        {key:'filly'},
+        {key:'fillqwsx'},
+        {key:'filltry'},
+        {key:'fillsd'},
+        {key:'fillth'},
+        {key:'fillt'},
+        {key:'fillf'},
+        {key:'fillu'},
+        {key:'fillo'},
 
       ]
     }
@@ -152,8 +192,11 @@ export default {
   },
   methods: {
     async edit_fields(){
-      //  https://www.w3.org/ns/ui#FieldList
+      //
       console.log("fields", this.fields)
+      console.log(this.t)
+
+      await ldflex[this.t]['https://www.w3.org/ns/ui#FieldList'].set(JSON.stringify(this.fields))
     },
     async edit_base_name(){
       //  console.log(this.name)

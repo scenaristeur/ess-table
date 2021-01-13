@@ -17,15 +17,7 @@
     </template>
   </b-table>
 
-
-
   <a :href="url" target="_blank">table <b-icon-link45deg></b-icon-link45deg></a>
-
-  <br>
-  <!-- {{records}} -->
-
-
-
 
 </div>
 </template>
