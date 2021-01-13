@@ -11,6 +11,9 @@
 - https://fr.vuejs.org/v2/examples/commits.html
 - medium like p editable https://stackoverflow.com/questions/53899676/vue-2-contenteditable-with-v-model
 
+# data europe sparql
+https://data.europa.eu/euodp/fr/sparql
+
 ## Project setup / Cloner le projet
 ```
 git clone https://github.com/scenaristeur/ess-table.git

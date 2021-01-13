@@ -1,6 +1,7 @@
 <template>
   <div>
 
+
     <b-modal id="modal-record"
     @ok="onValidModal">
     <template #modal-title>
@@ -42,7 +43,10 @@
 
   <b-modal id="modal-record-name" title="Rename" @ok="edit_record_name">
     <b-form-input v-model="record.name" placeholder="Enter the name of the record"></b-form-input>
+
   </b-modal>
+
+
 </div>
 </template>
 
@@ -68,13 +72,15 @@ export default {
       //  record:{},
       note: "",
       files: [],
-      tick: new Date()
+      tick: new Date(),
+
     }
   },
   created(){
     this.record = this.$store.state.table.record
   },
   methods: {
+
     async onInput(files){
       console.log(files)
       let preview = this.$refs.preview

@@ -9,6 +9,10 @@
     <a :href="base" target="_blank">base <b-icon-link45deg></b-icon-link45deg></a>
 
     <hr>
+    <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
+    <hr>
+    Fields : {{ fields }}
+    <hr>
     <b-card no-body>
       <b-tabs card>
         <!-- Render Tabs, supply a unique `key` to each tab -->
@@ -23,7 +27,7 @@
 
             </small>
           </template>
-          <TableView :url="t"/>
+          <TableView :url="t" :fields="fields" />
           <!-- ProjetIOIOI {{ t }} -->
 
           <!-- <b-button size="sm" variant="danger" class="float-right" @click="closeProjet(p)">
@@ -39,8 +43,8 @@
       <!-- Render this if no tabs -->
       <template #empty>
         <div class="text-center text-muted">
-          Il n'y a aucun projet ouvert<br>
-          Ouvrez un nouveau projet encliquant sur le bouton <b>+</b> juste au dessus.
+          There is no Table for this Base<br>
+          Add a new one with the <b>+</b> button.
         </div>
       </template>
     </b-tabs>
@@ -49,24 +53,31 @@
   <hr>
   <!-- <b-tabs content-class="mt-3">
 
-    <b-tab title="i" v-for="(t,i) in tables" :key="i" :active="i == 0">
-      <TableView :url="t"/>
-    </b-tab>
-    <b-tab title="First"><p>I'm the first tab</p></b-tab>
-    <b-tab title="Add a table"><p>I'm the second tab</p></b-tab>
-  </b-tabs> -->
+  <b-tab title="i" v-for="(t,i) in tables" :key="i" :active="i == 0">
+  <TableView :url="t"/>
+</b-tab>
+<b-tab title="First"><p>I'm the first tab</p></b-tab>
+<b-tab title="Add a table"><p>I'm the second tab</p></b-tab>
+</b-tabs> -->
 
-  <!-- {{tables}} -->
+<!-- {{tables}} -->
 
-  <b-modal id="modal-base" title="Rename" @ok="edit_base_name">
-    <b-form-input v-model="name" placeholder="Enter the name of the base"></b-form-input>
-  </b-modal>
+<b-modal id="modal-base" title="Rename" @ok="edit_base_name">
+  <b-form-input v-model="name" placeholder="Enter the name of the base"></b-form-input>
+</b-modal>
 
-  <b-modal id="modal-table" title="Rename" @ok="edit_table_name">
-    <b-form-input v-model="table_name" placeholder="Enter the name of the table"></b-form-input>
-  </b-modal>
+<b-modal id="modal-table" title="Rename" @ok="edit_table_name">
+  <b-form-input v-model="table_name" placeholder="Enter the name of the table"></b-form-input>
+</b-modal>
 
-    <RecordModal />
+<b-modal id="modal-fields" title="Fields" @ok="edit_fields">
+  Fields : {{ fields }}
+  <!-- <b-form-input v-model="" placeholder="Enter the name of the record"></b-form-input> -->
+</b-modal>
+
+<RecordModal />
+
+
 
 </b-container>
 </template>
@@ -79,13 +90,14 @@ export default {
   components: {
     'TableView': () => import('@/views/TableView'),
     'Label': () => import('@/components/basic/Label'),
-   'RecordModal': () => import('@/views/RecordModal')
+    'RecordModal': () => import('@/views/RecordModal')
   },
   data() {
     return {
       name: "",
       table_name:"",
-      tick: new Date()
+      tick: new Date(),
+      fields: []
     }
   },
   async created() {
@@ -94,6 +106,10 @@ export default {
     this.name = `${name}`
   },
   methods: {
+    async edit_fields(){
+      //  https://www.w3.org/ns/ui#FieldList
+      console.log("fields", this.fields)
+    },
     async edit_base_name(){
       //  console.log(this.name)
       await ldflex[this.base].label.set(this.name)
