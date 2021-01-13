@@ -10,53 +10,54 @@
 
 
     <b-card no-body>
-      <b-tabs card>
-        <!-- Render Tabs, supply a unique `key` to each tab -->
-        <b-tab v-for="(t,i) in tables" :key="'dyn-tab-' + i">
-          <template #title>
-            <small><Label :url="t" :tick='tick' />
-              <b-button variant="outline-info" v-b-modal.modal-table size="sm" class="ml-2" @click="setTableName(t)">
-                <b-icon-pen btn>
-                </b-icon-pen>
-              </b-button>
+      <b-tabs card
+      @input="tabChanged">
+      <!-- Render Tabs, supply a unique `key` to each tab -->
+      <b-tab v-for="(t,i) in tables" :key="'dyn-tab-' + i">
+        <template #title>
+          <small><Label :url="t" :tick='tick' />
+            <b-button variant="outline-info" v-b-modal.modal-table size="sm" class="ml-2" @click="setTableName(t)">
+              <b-icon-pen btn>
+              </b-icon-pen>
+            </b-button>
 
 
-            </small>
-          </template>
-          <hr>
-          <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
-          <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-new-field>Add a Field</b-button>
+          </small>
+        </template>
+        <hr>
+        <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
+        <b-button pill variant="outline-primary" size="sm" @click="newField">Add a Field</b-button>
 
-          <TableView :url="t" :fields="fields" />
-          <!-- ProjetIOIOI {{ t }} -->
+        <TableView :url="t" :fields="fields" />
+        <!-- ProjetIOIOI {{ t }} -->
 
-          <!-- <b-button size="sm" variant="danger" class="float-right" @click="closeProjet(p)">
-          Close projet
-        </b-button> -->
-      </b-tab>
+        <!-- <b-button size="sm" variant="danger" class="float-right" @click="closeProjet(p)">
+        Close projet
+      </b-button> -->
+    </b-tab>
 
-      <!-- New Tab Button (Using tabs-end slot) -->
-      <template #tabs-end>
-        <b-nav-item role="presentation" @click.prevent="addTable" href="#"><b>+</b></b-nav-item>
-      </template>
+    <!-- New Tab Button (Using tabs-end slot) -->
+    <template #tabs-end>
+      <b-nav-item role="presentation" @click.prevent="addTable" href="#"><b>+</b></b-nav-item>
+    </template>
 
-      <!-- Render this if no tabs -->
-      <template #empty>
-        <div class="text-center text-muted">
-          There is no Table for this Base<br>
-          Add a new one with the <b>+</b> button.
-        </div>
-      </template>
-    </b-tabs>
-  </b-card>
+    <!-- Render this if no tabs -->
+    <template #empty>
+      <div class="text-center text-muted">
+        There is no Table for this Base<br>
+        Add a new one with the <b>+</b> button.
+      </div>
+    </template>
+  </b-tabs>
+</b-card>
 
-  <hr>
-  Fields : {{ fields }}
-  <hr>
-  <!-- <b-tabs content-class="mt-3">
+<hr>
+Fields : {{ fields }}
+<hr>
+<!-- <b-tabs content-class="mt-3">
 
-  <b-tab title="i" v-for="(t,i) in tables" :key="i" :active="i == 0">
-  <TableView :url="t"/>
+<b-tab title="i" v-for="(t,i) in tables" :key="i" :active="i == 0">
+<TableView :url="t"/>
 </b-tab>
 <b-tab title="First"><p>I'm the first tab</p></b-tab>
 <b-tab title="Add a table"><p>I'm the second tab</p></b-tab>
@@ -135,7 +136,11 @@ export default {
         { value: 'single_line_text', text: 'Single Line Text' },
         { value: 'single_select', text: 'Single Select' },
         { value: 'link', text: 'Link to another Record or Resource' },
-        { value: 'number', text: 'Number' },
+        { value: 'numeric', text: 'Numeric' },
+        { value: 'boolean', text: 'Boolean' },
+        { value: 'tristate', text: 'Tristate' },
+        { value: 'phone', text: 'Phone' },
+        { value: 'location', text: 'Location' },
       ],
       fields: [
         {
@@ -168,19 +173,19 @@ export default {
         },
         {key:'fill'},
         {key:'fille'},
-        {key:'filld'},
-        {key:'fillz'},
-        {key:'filla'},
-        {key:'fille'},
-        {key:'filly'},
-        {key:'fillqwsx'},
-        {key:'filltry'},
-        {key:'fillsd'},
-        {key:'fillth'},
-        {key:'fillt'},
-        {key:'fillf'},
-        {key:'fillu'},
-        {key:'fillo'},
+        // {key:'filld'},
+        // {key:'fillz'},
+        // {key:'filla'},
+        // {key:'fille'},
+        // {key:'filly'},
+        // {key:'fillqwsx'},
+        // {key:'filltry'},
+        // {key:'fillsd'},
+        // {key:'fillth'},
+        // {key:'fillt'},
+        // {key:'fillf'},
+        // {key:'fillu'},
+        // {key:'fillo'},
 
       ]
     }
@@ -191,12 +196,20 @@ export default {
     this.name = `${name}`
   },
   methods: {
+    newField(){
+      this.fields.push({key:'new field'})
+    },
+    tabChanged(t){
+      console.log("TAB CHANGED", t)
+      console.log(this.tables[t])
+      this.table = this.tables[t]
+    },
     async edit_fields(){
       //
       console.log("fields", this.fields)
-      console.log(this.t)
+      console.log(this.table)
 
-      await ldflex[this.t]['https://www.w3.org/ns/ui#FieldList'].set(JSON.stringify(this.fields))
+      await ldflex[this.table]['https://www.w3.org/ns/ui#FieldList'].set(JSON.stringify(this.fields))
     },
     async edit_base_name(){
       //  console.log(this.name)

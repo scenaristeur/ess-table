@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ess-table/precache-manifest.313818d54ca2223d3235fc1f9911ce3d.js"
+  "/ess-table/precache-manifest.c72dc86030020614432074ba99d80f59.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "ess-table"});
