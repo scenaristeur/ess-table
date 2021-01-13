@@ -97,7 +97,52 @@ export default {
       name: "",
       table_name:"",
       tick: new Date(),
-      fields: []
+      fields: [
+        {
+          key: 'label',
+          sortable: true,
+          modifiable: false,
+          stickyColumn: true,
+           isRowHeader: true,
+            variant: 'primary'
+        },
+        {
+          key: 'notes',
+          //  label: 'Person age',
+          sortable: true,
+          modifiable: false
+        },
+        {
+          key: 'attachments',
+          modifiable: false,
+          variant: 'secondary'
+        },
+        {
+          key: '+',
+          modifiable: false
+        },
+        {
+          key: 'url',
+          modifiable: false,
+          variant: 'secondary'
+        },
+        {key:'fill'},
+    {key:'fille'},
+    {key:'filld'},
+    {key:'fillz'},
+    {key:'filla'},
+    {key:'fille'},
+    {key:'filly'},
+    {key:'fillqwsx'},
+    {key:'filltry'},
+    {key:'fillsd'},
+    {key:'fillth'},
+    {key:'fillt'},
+    {key:'fillf'},
+    {key:'fillu'},
+    {key:'fillo'},
+
+      ]
     }
   },
   async created() {

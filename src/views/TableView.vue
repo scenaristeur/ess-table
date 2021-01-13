@@ -2,11 +2,12 @@
   <div>
     <b-button pill variant="outline-primary" size="sm" @click="add">Add Record</b-button>
 
-
-    FFFIIIEEELLLLDDDSSS : {{ fields }}
     <b-table
     hover
     :items="records"
+    :fields="fields"
+    sticky-header="true"
+    responsive
     selectable
     select-mode="single"
     selected-variant="primary"
@@ -63,7 +64,9 @@ export default {
       this.records = []
       for await (const record of ldflex[this.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
         let label = await ldflex[record].label
-        this.records.push({label: label, url: `${record}`})
+        let notes = ['1','2']
+        let attachments = ['pic1', 'pdf2']
+        this.records.push({label: label, url: `${record}`, notes: notes, attachments: attachments})
         // for await (const property of record.properties){
         //   console.log(`${property}`);
         // }
