@@ -26,6 +26,31 @@
 </template>
 
 <script>
+import SoukaiSolid, { SolidEngine, SolidModel } from 'soukai-solid';
+import SolidAuthClient from 'solid-auth-client';
+import { FieldType, Soukai} from 'soukai';
+//import Person from '@/models/Person'
+
+class Person extends SolidModel {
+
+  static rdfsClasses = ['http://xmlns.com/foaf/0.1/Person'];
+
+  static fields = {
+    name: {
+      type: FieldType.String,
+      rdfProperty: 'http://xmlns.com/foaf/0.1/name',
+    },
+  };
+
+}
+
+SoukaiSolid.loadSolidModels();
+Soukai.loadModels({ Person });
+Soukai.useEngine(new SolidEngine(SolidAuthClient.fetch.bind(SolidAuthClient)));
+
+// You would normally get the Solid POD url from solid-auth-client,
+// we're hard-coding it here as an example.
+let containerUrl = "https://spoggy-test5.solidcommunity.net/public/table/persons/"
 
 //import { v4 as uuidv4 } from 'uuid';
 //import solidMixin from '@/mixins/solidMixin'
@@ -43,7 +68,18 @@ export default {
   },
   created() {
     this.workspaces = []
-        console.log('##################',this.$myAddedMethod())
+    console.log('##################',this.$myAddedMethod())
+    Person.at(containerUrl).create({ name: 'John Doe' });
+  },
+  async mounted(){
+    const container = await Person.from(containerUrl);
+    console.log("Container", container)
+    const persons = await Person.from(containerUrl).all();
+    console.log("Persons", persons)
+    persons.forEach((p) => {
+      console.log("NAme",p.name)
+    });
+
   },
   methods: {
     async add(){

@@ -3,6 +3,11 @@
 - template : https://scenaristeur.github.io/portfolio/
 - source code : https://github.com/scenaristeur/ess-table
 
+# install  @vue/cli@latest
+```
+ npm install -g @vue/cli@latest
+```
+
 # ess-table
 
 - https://fr.vuejs.org/v2/examples/tree-view.html
