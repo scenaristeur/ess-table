@@ -13,7 +13,7 @@
       <b-tabs card
       @input="tabChanged">
       <!-- Render Tabs, supply a unique `key` to each tab -->
-      <b-tab v-for="(t,i) in tables" :key="'dyn-tab-' + i">
+      <b-tab v-for="(t,i) in tables" :key="'dyn-tab-' + i" class="p-0">
         <template #title>
           <small><Label :url="t" :tick='tick' />
             <b-button variant="outline-info" v-b-modal.modal-table size="sm" class="ml-2" @click="setTableName(t)">

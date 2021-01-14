@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container fluid class="p-0">
     <b-button pill variant="outline-primary" size="sm" @click="add">Add Record</b-button>
 
     <b-table
