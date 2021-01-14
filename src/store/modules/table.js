@@ -15,9 +15,10 @@ const state = () => ({
   base: {},
   tables: [],
   table: {},
-  record:{},
+  record: {},
   tick_workspaces: new Date(),
-  setRecordTick: new Date(),
+  recordTick: new Date(),
+//  fields: []
 })
 
 // getters
@@ -165,6 +166,9 @@ const mutations = {
   setRecord(state, r){
     state.record = r
   },
+  // setFields(state, f){
+  //   state.fields = f
+  // },
   setRecordTick(state, t){
     console.log(t)
     state.recordTick = t

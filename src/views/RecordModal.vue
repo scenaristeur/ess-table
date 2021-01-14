@@ -17,7 +17,19 @@
 
     <b-button pill size="sm" v-b-modal.modal-note><b-icon-plus></b-icon-plus> Add a note</b-button>
     <b-button pill variant="outline-primary" v-b-modal.modal-files size="sm"><b-icon-plus></b-icon-plus> Add images files</b-button>
-    <!-- <p class="my-4">Hello from modal!</p> -->
+    <hr>
+
+    <p class="my-4">
+      <b-list-group>
+        <b-list-group-item v-for="f in fields" :key="f.key">
+          <h5>{{f.key }} :</h5>
+          {{ record[f.key] || f.default  }}
+          <hr>
+          <small>  {{ f}}</small>
+        </b-list-group-item>
+
+      </b-list-group>
+    </p>
   </b-modal>
 
   <b-modal id="modal-note" title="New Note" @ok="addNote">
@@ -62,6 +74,7 @@ import watermark from 'watermarkjs'
 
 export default {
   name: 'RecordModal',
+  props: ['fields'],
   components: {
     'Label': () => import('@/components/basic/Label'),
     //  'EditableSpan': () => import('@/components/basic/EditableSpan')

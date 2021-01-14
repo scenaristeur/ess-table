@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <b-container fluid>
     <b-button pill variant="outline-primary" size="sm" @click="add">Add Record</b-button>
 
     <b-table
     hover
+    :ref='url'
     :items="records"
     :fields="fields"
     sticky-header="true"
@@ -19,7 +20,7 @@
 
   <a :href="url" target="_blank">table <b-icon-link45deg></b-icon-link45deg></a>
 
-</div>
+</b-container>
 </template>
 
 <script>
@@ -52,12 +53,17 @@ export default {
 
   methods: {
     async getRecords(){
-      console.log('getrec')
       this.records = []
       for await (const record of ldflex[this.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
         let label = await ldflex[record].label
-        let notes = ['1','2']
-        let attachments = ['pic1', 'pdf2']
+        let notes = []
+        let attachments = []
+        for await (const note of ldflex[record]['http://www.w3.org/2004/02/skos/core#note']) {
+          notes.push(`${note}`)
+        }
+        for await (const attachment of ldflex[record]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
+          attachments.push(`${attachment}`)
+        }
         this.records.push({label: label, url: `${record}`, notes: notes, attachments: attachments})
         // for await (const property of record.properties){
         //   console.log(`${property}`);
@@ -70,6 +76,7 @@ export default {
         this.record = r[0]
         console.log(this.record)
         this.$store.commit('table/setRecord', this.record)
+        //  this.$store.commit('table/setFields', this.fields)
         this.$bvModal.show('modal-record')
       }
       //  this.$router.push('Row')
@@ -124,7 +131,11 @@ export default {
       console.log("tables URL",this.url)
     },
     recordTick(){
-      console.log(this.recordTick)
+      //  console.log('RECORDTICK',this.recordTick)
+      //  console.log(this.$refs[this.url])
+      this.getRecords()
+      //    this.$refs[this.url].refresh()
+      //  this.tick = this.recordTick
     }
   },
   computed:{

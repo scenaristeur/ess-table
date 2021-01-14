@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container fluid>
     <h2>{{name}}
       <b-button variant="outline-info" v-b-modal.modal-base size="sm">
         <b-icon-pen>
@@ -25,8 +25,8 @@
           </small>
         </template>
         <hr>
-        <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
         <b-button pill variant="outline-primary" size="sm" @click="newField">Add a Field</b-button>
+        <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
 
         <TableView :url="t" :fields="fields" />
         <!-- ProjetIOIOI {{ t }} -->
@@ -99,6 +99,7 @@ Fields : {{ fields }}
               <b-form-input v-model="field.default"></b-form-input>
             </b-input-group>
             {{ field }}
+            <b-button variant="danger" @click="remove(field)">Remove</b-button>
           </b-card-text>
         </b-card-body>
       </b-collapse>
@@ -112,7 +113,7 @@ Fields : {{ fields }}
 <!-- <b-form-input v-model="" placeholder="Enter the name of the record"></b-form-input> -->
 </b-modal>
 
-<RecordModal />
+<RecordModal :fields="fields"/>
 
 </b-container>
 </template>
@@ -142,7 +143,7 @@ export default {
         { value: 'phone', text: 'Phone' },
         { value: 'location', text: 'Location' },
       ],
-      fields: [
+      default_fields: [
         {
           key: 'label',
           sortable: true,
@@ -162,32 +163,17 @@ export default {
           modifiable: false,
           variant: 'secondary'
         },
-        {
-          key: '+',
-          modifiable: false
-        },
+        // {
+        //   key: '+',
+        //   modifiable: false
+        // },
         {
           key: 'url',
           modifiable: false,
           variant: 'secondary'
         },
-        {key:'fill'},
-        {key:'fille'},
-        // {key:'filld'},
-        // {key:'fillz'},
-        // {key:'filla'},
-        // {key:'fille'},
-        // {key:'filly'},
-        // {key:'fillqwsx'},
-        // {key:'filltry'},
-        // {key:'fillsd'},
-        // {key:'fillth'},
-        // {key:'fillt'},
-        // {key:'fillf'},
-        // {key:'fillu'},
-        // {key:'fillo'},
-
-      ]
+      ],
+      fields:[]
     }
   },
   async created() {
@@ -199,10 +185,21 @@ export default {
     newField(){
       this.fields.push({key:'new field'})
     },
-    tabChanged(t){
+    remove(f){
+      console.log(f)
+      this.fields = this.fields.filter(function( field ) {
+        return field.key !== f.key;
+      });
+    },
+    async  tabChanged(t){
       console.log("TAB CHANGED", t)
       console.log(this.tables[t])
       this.table = this.tables[t]
+      console.log(this.table)
+      let string_fields = await ldflex[this.table]['https://www.w3.org/ns/ui#FieldList']
+      let table_fields = string_fields == undefined ? this.default_fields : JSON.parse(await ldflex[this.table]['https://www.w3.org/ns/ui#FieldList'])
+      console.log(table_fields)
+      this.fields = table_fields
     },
     async edit_fields(){
       //
