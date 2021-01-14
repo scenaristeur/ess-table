@@ -39,7 +39,37 @@ export default {
   data() {
     return {
       records:[],
-
+      special_preds:['label', 'url', 'notes', 'attachments'],
+      default_fields: [
+        {
+          key: 'label',
+          sortable: true,
+          modifiable: false,
+          stickyColumn: true,
+          isRowHeader: true,
+          variant: 'primary'
+        },
+        {
+          key: 'notes',
+          //  label: 'Person age',
+          sortable: true,
+          modifiable: false
+        },
+        {
+          key: 'attachments',
+          modifiable: false,
+          variant: 'secondary'
+        },
+        // {
+        //   key: '+',
+        //   modifiable: false
+        // },
+        {
+          key: 'url',
+          modifiable: false,
+          variant: 'secondary'
+        },
+      ],
       // record:{},
       // note: "",
       // files: []
@@ -54,6 +84,13 @@ export default {
   methods: {
     async getRecords(){
       this.records = []
+      console.log("url",this.url)
+      let string_fields = await ldflex[this.url]['https://www.w3.org/ns/ui#FieldList']
+      console.log("SF",string_fields)
+      let table_fields = string_fields == undefined ? this.default_fields : JSON.parse(string_fields)
+      console.error(table_fields)
+    //  this.fields = table_fields
+
       for await (const record of ldflex[this.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
         let label = await ldflex[record].label
         let notes = []
@@ -64,7 +101,36 @@ export default {
         for await (const attachment of ldflex[record]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
           attachments.push(`${attachment}`)
         }
-        this.records.push({label: label, url: `${record}`, notes: notes, attachments: attachments})
+        let rec = {label: label, url: `${record}`, notes: notes, attachments: attachments}
+    //    console.log('Fields', this.fields)
+      //  let special_preds = this.special_preds
+
+        this.fields.forEach(async function(f) {
+          console.warn("KEY",f.key)
+          for (const [key, value] of Object.entries(f)) {
+console.log( key, value)
+          //   if (!special_preds.includes(key)){
+          //     console.log(key, typeof value, value)
+          //     let val = ""
+          //     switch (typeof value) {
+          //       case 'string':
+          //       case 'boolean':
+          //       val = await ldflex[record][record+"#"+value]
+          //       console.log(val)
+          //       break;
+          //       default:
+          //       console.log("todo",typeof value)
+          //     }
+          // //    rec[key] = `${val}`
+          //
+          //   }else{
+          //     console.log("already treated",key, typeof value, value)
+          //   }
+            //  console.log(key+'->'+value)
+          }
+        });
+        console.warn(rec)
+        this.records.push(rec)
         // for await (const property of record.properties){
         //   console.log(`${property}`);
         // }

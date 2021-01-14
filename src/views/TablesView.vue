@@ -197,7 +197,7 @@ export default {
       this.table = this.tables[t]
       console.log(this.table)
       let string_fields = await ldflex[this.table]['https://www.w3.org/ns/ui#FieldList']
-      let table_fields = string_fields == undefined ? this.default_fields : JSON.parse(await ldflex[this.table]['https://www.w3.org/ns/ui#FieldList'])
+      let table_fields = string_fields == undefined ? this.default_fields : JSON.parse(string_fields)
       console.log(table_fields)
       this.fields = table_fields
     },
