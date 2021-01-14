@@ -43,6 +43,7 @@ export default {
   },
   created() {
     this.workspaces = []
+        console.log('##################',this.$myAddedMethod())
   },
   methods: {
     async add(){
@@ -61,6 +62,7 @@ export default {
     },
     getWorkspaces(){
       this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
+
     },
 
 

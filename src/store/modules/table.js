@@ -10,7 +10,7 @@ import { namedNode } from "@rdfjs/data-model";
 const state = () => ({
   privacy: 'public',
   workspaces: [],
-  workspace: {},
+  workspace: null,
   bases: [],
   base: {},
   tables: [],

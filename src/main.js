@@ -16,11 +16,11 @@ Vue.config.productionTip = false
 
 import essTable from './plugins/ess-table'
 
-Vue.use(essTable,{ store: store })
+Vue.use(essTable)
 
 
 new Vue({
   router,
-  store,
+  store: store,
   render: h => h(App)
 }).$mount('#app')
