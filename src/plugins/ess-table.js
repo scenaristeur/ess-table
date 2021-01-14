@@ -3,6 +3,7 @@ import solidWorkspace from './solid-workspace'
 import solidBase from './solid-base'
 import solidTable from './solid-table'
 import solidRecord from './solid-record'
+import essModels from './ess-models'
 //import store from '../store'
 
 export default {
@@ -13,10 +14,11 @@ export default {
     Vue.use(solidBase, options)
     Vue.use(solidTable, options)
     Vue.use(solidRecord, options)
+    Vue.use(essModels, options)
     // create a mixin
     Vue.mixin({
       created() {
-      //  console.log(store)
+        //  console.log(store)
         // console.log(Vue, options);
         // console.log("storage", store.state.solid.storage)
         // console.log("workspaces", Vue.workspaces)

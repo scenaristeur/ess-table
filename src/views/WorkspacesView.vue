@@ -26,31 +26,11 @@
 </template>
 
 <script>
-import SoukaiSolid, { SolidEngine, SolidModel } from 'soukai-solid';
-import SolidAuthClient from 'solid-auth-client';
-import { FieldType, Soukai} from 'soukai';
-//import Person from '@/models/Person'
 
-class Person extends SolidModel {
-
-  static rdfsClasses = ['http://xmlns.com/foaf/0.1/Person'];
-
-  static fields = {
-    name: {
-      type: FieldType.String,
-      rdfProperty: 'http://xmlns.com/foaf/0.1/name',
-    },
-  };
-
-}
-
-SoukaiSolid.loadSolidModels();
-Soukai.loadModels({ Person });
-Soukai.useEngine(new SolidEngine(SolidAuthClient.fetch.bind(SolidAuthClient)));
-
+//import {Task/*, TaskList*/} from '@/plugins/models/Task'
 // You would normally get the Solid POD url from solid-auth-client,
 // we're hard-coding it here as an example.
-let containerUrl = "https://spoggy-test5.solidcommunity.net/public/table/persons/"
+//import Person from '@plugins/models/Person'
 
 //import { v4 as uuidv4 } from 'uuid';
 //import solidMixin from '@/mixins/solidMixin'
@@ -66,21 +46,14 @@ export default {
       tick: new Date()
     }
   },
-  created() {
+  async created() {
     this.workspaces = []
     console.log('##################',this.$myAddedMethod())
-    Person.at(containerUrl).create({ name: 'John Doe' });
+    // let task = new Task({name: 'Write some tests!'})
+    // task.save()
+    // console.log(task.name)
   },
-  async mounted(){
-    const container = await Person.from(containerUrl);
-    console.log("Container", container)
-    const persons = await Person.from(containerUrl).all();
-    console.log("Persons", persons)
-    persons.forEach((p) => {
-      console.log("NAme",p.name)
-    });
 
-  },
   methods: {
     async add(){
       this.$store.dispatch('table/addWorkspace', {path: this.path, name:"___workspace name___"})
@@ -96,9 +69,11 @@ export default {
     togglePrivacy(){
       this.$store.commit('table/togglePrivacy')
     },
-    getWorkspaces(){
+    async getWorkspaces(){
       this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
-
+       await this.$createPerson()
+       await this.$createPerson("bab")
+       await this.$createPerson("bob")
     },
 
 
@@ -115,6 +90,7 @@ export default {
     workspaces(){
       console.log("must update workspaces in table", this.workspaces)
       this.tick = new Date()
+
     }
 
   },
