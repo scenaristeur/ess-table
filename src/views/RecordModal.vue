@@ -25,6 +25,14 @@
           <h5>{{f.key }} :</h5>
           {{ record[f.key] || f.default  }}
           <hr>
+          {{ f.type }}
+          <b-form-checkbox v-model="record[f.key]" v-if="f.type=='boolean'">{{f.key}}</b-form-checkbox>
+          <b-form-input v-model="record[f.key]" :placeholder="f.key" v-if="f.type == 'single_line_text' || f.type == 'link'"></b-form-input>
+
+
+
+
+          <hr>
           <small>  {{ f}}</small>
         </b-list-group-item>
 
@@ -153,9 +161,34 @@ export default {
         await ldflex[this.record.url]['http://www.w3.org/2004/02/skos/core#note'].add(note)
         this.note = ""
       },
-      onValidModal(){
+      async  onValidModal(){
         console.log(this.record)
         this.$store.commit('table/setRecordTick', new Date())
+        for (const [key, value] of Object.entries(this.record)) {
+
+          switch (key) {
+            case 'label':
+            console.log('todo label')
+            break;
+            case 'notes':
+            console.log('todo notes')
+            break;
+            case 'attachments':
+            console.log('todo attachments')
+            break;
+            case 'url':
+            console.log('todo url')
+            break;
+            default:
+            console.log(`${key}: ${value}, ${typeof value}`);
+            await ldflex[this.record.url][this.record.url+"#"+key].add(value)
+
+
+          }
+
+
+
+        }
       },
       async edit_record_name(){
         console.log(this.record.name, this.record.url)

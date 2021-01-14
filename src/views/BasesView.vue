@@ -15,7 +15,7 @@
         <b-button variant="outline-info">
           <b-icon-pen class="border border-info rounded p-2" font-scale="3" variant="info">
           </b-icon-pen><br>
-          <Label :url="b" />
+          <Label :url="b" :tick="tick" />
         </b-button>
       </li>
 
@@ -62,7 +62,8 @@ export default {
   },
   data() {
     return {
-      name: ""
+      name: "",
+      tick: new Date()
     }
   },
   // async created() {
@@ -95,6 +96,7 @@ export default {
       this.$store.dispatch('table/getBases', this.workspace)
       let name =  await ldflex[this.workspace].label
       this.name = `${name}`
+      this.tick = new Date()
     }
   },
   computed:{
