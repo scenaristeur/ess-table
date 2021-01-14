@@ -14,6 +14,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
 
 
+import essTable from './plugins/ess-table'
+
+Vue.use(essTable,{ store: store })
+
+
 new Vue({
   router,
   store,
