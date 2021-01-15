@@ -5,24 +5,56 @@
 ///* global serviceWorkerOption: false */
 
 const cacheName = 'ess-table';
-//const isExcluded = f => /hot-update|sockjs/.test(f);
-
-const filesToCache = [
-  //...serviceWorkerOption.assets.filter(file => !isExcluded(file)),
-  '/',
-   'https://cdn.jsdelivr.net/npm/solid-auth-client@2.3.0/dist-lib/solid-auth-client.bundle.js',
-   'https://cdn.jsdelivr.net/npm/rdflib/dist/rdflib.min.js',
-   'https://cdn.jsdelivr.net/npm/@solid/query-ldflex/dist/solid-query-ldflex.rdflib.js'
-];
-
-// Cache known assets up-front
-const preCache = () =>
-caches.open(cacheName).then(cache => {
-  cache.addAll(filesToCache);
-});
-
-// Handle the 'install' event
-self.addEventListener('install', event => {
-  console.log('PRECACHE IN SW')
-  event.waitUntil(preCache());
-});
+console.log("cache", cacheName)
+// const isExcluded = f => /hot-update|sockjs/.test(f);
+//
+// const filesToCache = [
+//   //...serviceWorkerOption.assets.filter(file => !isExcluded(file)),
+//   '/',
+//    'https://cdn.jsdelivr.net/npm/solid-auth-client@2.3.0/dist-lib/solid-auth-client.bundle.js',
+//    'https://cdn.jsdelivr.net/npm/rdflib/dist/rdflib.min.js',
+//    'https://cdn.jsdelivr.net/npm/@solid/query-ldflex/dist/solid-query-ldflex.rdflib.js'
+// ];
+//
+// // Store a response inside the cache
+// // Implement this above fetchFromNetwork
+// const updateCache = (request, response) =>
+//   caches.open(cacheName).then(cache => cache.put(request, response));
+//
+// const fetchFromNetwork = request =>
+//   new Promise((resolve, reject) => {
+//     fetch(request).then(response => {
+//       if (!isExcluded(request.url) && response) {
+//         updateCache(request, response.clone()).then(() => resolve(response));
+//       } else {
+//         resolve(response);
+//       }
+//     }, reject);
+//   });
+//
+//
+//   // Try to fetch existing responses from the cache
+//   // Implement this between fetchFromNetwork and preCache
+//   const fetchFromCache = request =>
+//     caches.match(request).then(response => response || Promise.reject('failed'));
+//
+//
+// // Cache known assets up-front
+// const preCache = () =>
+// caches.open(cacheName).then(cache => {
+//   cache.addAll(filesToCache);
+// });
+//
+// // Handle the 'install' event
+// self.addEventListener('install', event => {
+//   console.log('PRECACHE IN SW')
+//   event.waitUntil(preCache());
+// });
+//
+//
+// self.addEventListener('fetch', event => {
+//   console.log(event.request.method)
+//   event.respondWith(
+//     fetchFromNetwork(event.request).catch(() => fetchFromCache(event.request))
+//   );
+// });

@@ -5,7 +5,7 @@
 
 # install  @vue/cli@latest
 ```
- npm install -g @vue/cli@latest
+npm install -g @vue/cli@latest
 ```
 
 # ess-table
@@ -52,6 +52,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ### pwa cache
+
+https://developer.mozilla.org/fr/docs/Web/API/Service_Worker_API/Using_Service_Workers
+
 https://medium.com/@stephen.trevor.wong/3-steps-to-add-pwa-to-vue-js-in-2020-9f9daa56f9
 https://auth0.com/blog/vuejs-kanban-board-adding-progressive-web-app-features/
 https://medium.com/js-dojo/vuejs-pwa-cache-busting-8d09edd22a31
@@ -59,6 +62,12 @@ https://www.julienpradet.fr/fiches-techniques/pwa-intercepter-les-requetes-http-
 
 - test service-worker.js in development
 https://medium.com/@stephen.trevor.wong/3-steps-to-add-pwa-to-vue-js-in-2020-9f9daa56f9
- ```
+modify vue.config.js
+```
+const publicPath= "./"
+```
+
+
+```
 npm run build && cd dist && npx http-server && cd ..
- ```
+```
