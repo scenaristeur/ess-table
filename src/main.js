@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
+// import wb from "./registerServiceWorker";
+// Vue.prototype.$workbox = wb;
+
 import router from './router'
 import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'  // Install BootstrapVue
@@ -17,6 +20,8 @@ Vue.config.productionTip = false
 import essTable from './plugins/ess-table'
 
 Vue.use(essTable)
+
+
 
 
 new Vue({

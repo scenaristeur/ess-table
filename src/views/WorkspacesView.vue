@@ -7,7 +7,7 @@
       <li v-for="(sws,i) in souk_ws" :key="i">
         {{sws.name}}<br>
         {{sws.createdAt}}<br>
-        {{sws}}
+        {{sws.url}}
       </li>
     </ul>
 
@@ -91,8 +91,8 @@ export default {
       // await this.$createWorkspace("bob WS")
        await this.$createWorkspace("BABWorkspace")
       let souk_ws = await this.$getWorkspaces(this.storage+this.privacy+'/table/test/workspaces/')
-      this.souk_ws = souk_ws
-      console.log(souk_ws)
+     this.souk_ws = souk_ws.map(x => ({'name' : x.name, 'createdAt': x.createdAt, url: x.url}))
+      console.log(this.souk_ws)
 
     },
 

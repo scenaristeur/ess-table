@@ -35,23 +35,6 @@ export default {
           });
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Vue.prototype.$getWorkspaces = async function(containerUrl/*=this.storage+this.privacy+'/table/test/workspaces/'*/){
           return await Workspace.from(containerUrl).all();
         }

@@ -49,3 +49,16 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### pwa cache
+https://medium.com/@stephen.trevor.wong/3-steps-to-add-pwa-to-vue-js-in-2020-9f9daa56f9
+https://auth0.com/blog/vuejs-kanban-board-adding-progressive-web-app-features/
+https://medium.com/js-dojo/vuejs-pwa-cache-busting-8d09edd22a31
+https://www.julienpradet.fr/fiches-techniques/pwa-intercepter-les-requetes-http-et-les-mettre-en-cache/
+
+- test service-worker.js in development
+https://medium.com/@stephen.trevor.wong/3-steps-to-add-pwa-to-vue-js-in-2020-9f9daa56f9
+ ```
+npm run build && cd dist && npx http-server && cd ..
+ ```

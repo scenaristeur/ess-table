@@ -1,34 +1,31 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
+importScripts("precache-manifest.362c2a8e5b1910d0049430c943ec39d9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+// src/sw.js
+// https://auth0.com/blog/vuejs-kanban-board-adding-progressive-web-app-features/#An-Introduction-to-Service-Workers
 
-importScripts(
-  "/ess-table/precache-manifest.e5534d12afbbab37ee1c4ced70e0e5ef.js"
-);
+// ESLint global registration
+///* global serviceWorkerOption: false */
 
-workbox.core.setCacheNameDetails({prefix: "ess-table"});
+const cacheName = 'ess-table';
+//const isExcluded = f => /hot-update|sockjs/.test(f);
 
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
+const filesToCache = [
+  //...serviceWorkerOption.assets.filter(file => !isExcluded(file)),
+  '/',
+   'https://cdn.jsdelivr.net/npm/solid-auth-client@2.3.0/dist-lib/solid-auth-client.bundle.js',
+   'https://cdn.jsdelivr.net/npm/rdflib/dist/rdflib.min.js',
+   'https://cdn.jsdelivr.net/npm/@solid/query-ldflex/dist/solid-query-ldflex.rdflib.js'
+];
+
+// Cache known assets up-front
+const preCache = () =>
+caches.open(cacheName).then(cache => {
+  cache.addAll(filesToCache);
 });
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+// Handle the 'install' event
+self.addEventListener('install', event => {
+  console.log('PRECACHE IN SW')
+  event.waitUntil(preCache());
+});
+
