@@ -1,5 +1,16 @@
 <template>
   <div class="container">
+
+    SOUKAI WS : {{ souk_ws.length}}<br>
+
+    <ul>
+      <li v-for="(sws,i) in souk_ws" :key="i">
+        {{sws.name}}<br>
+        {{sws.createdAt}}<br>
+        {{sws}}
+      </li>
+    </ul>
+
     <b-card
     no-body
     style="min-width: 10rem;"
@@ -26,7 +37,7 @@
 </template>
 
 <script>
-
+//import {/*parse,*/ stringify} from 'flatted';
 //import {Task/*, TaskList*/} from '@/plugins/models/Task'
 // You would normally get the Solid POD url from solid-auth-client,
 // we're hard-coding it here as an example.
@@ -43,7 +54,8 @@ export default {
   },
   data() {
     return {
-      tick: new Date()
+      tick: new Date(),
+      souk_ws: []
     }
   },
   async created() {
@@ -71,10 +83,56 @@ export default {
     },
     async getWorkspaces(){
       this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
-       await this.$createPerson()
-       await this.$createPerson("bab")
-       await this.$createPerson("bob")
+      // await this.$createPerson()
+      // await this.$createPerson("bab")
+      // await this.$createPerson("bob")
+      //
+      // await this.$createWorkspace("A Workspace")
+      // await this.$createWorkspace("bob WS")
+       await this.$createWorkspace("BABWorkspace")
+      let souk_ws = await this.$getWorkspaces(this.storage+this.privacy+'/table/test/workspaces/')
+      this.souk_ws = souk_ws
+      console.log(souk_ws)
+
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    getCircularReplacer(){
+      const seen = new WeakSet();
+      return (key, value) => {
+        if (typeof value === "object" && value !== null) {
+          if (seen.has(value)) {
+            return;
+          }
+          seen.add(value);
+        }
+        return value;
+      };
+    }
 
 
   },
