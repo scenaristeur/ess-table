@@ -1,4 +1,4 @@
-importScripts("/ess-table/precache-manifest.55440e427777d7684c6f11e9ec85c4b3.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/ess-table/precache-manifest.ef931fe3c2bbbe526b6a06c62525f2ea.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 // src/sw.js
 // https://auth0.com/blog/vuejs-kanban-board-adding-progressive-web-app-features/#An-Introduction-to-Service-Workers

@@ -49,40 +49,44 @@ h5 {
   opacity: 0.3;
   float: right;
 }
+.badge{
+  float: right;
+  margin:  0 0 0 40px;
+}
 
 .close-button:hover {
   cursor: pointer;
 }
 /* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+font-family: Avenir, Helvetica, Arial, sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+text-align: center;
+color: #2c3e50;
 }
 
 #nav {
-  padding: 30px;
+padding: 30px;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+font-weight: bold;
+color: #2c3e50;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+color: #42b983;
 }
 .page-header h1 {
-  font-weight: 300;
+font-weight: 300;
 }
 .card {
-  margin-bottom: 10px;
+margin-bottom: 10px;
 }
 .card:last-child {
-  margin-bottom: 25px;
+margin-bottom: 25px;
 }
 .card-block {
-  padding: 15px;
+padding: 15px;
 } */
 </style>
