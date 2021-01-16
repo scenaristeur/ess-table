@@ -37,6 +37,54 @@
 </template>
 
 <script>
+
+import { FieldType, Soukai} from 'soukai';
+import /*SoukaiSolid,*/ { /*SolidContainsRelation,*/ /*SolidEngine,*/ SolidModel } from 'soukai-solid';
+
+
+class Band extends SolidModel {
+
+  static rdfContexts = {
+    'schema': 'https://schema.org/',
+  };
+
+  static rdfsClasses = ['MusicGroup'];
+
+  static fields = {
+    name: FieldType.String,
+  };
+
+  members = [];
+   relatedMembers = []
+   // (model) {
+   //      return new SolidContainsRelation(this, model);
+   //  }// [] SolidContainsRelation<Group, Person, typeof Person>;
+
+  membersRelationship() {
+    return this.hasMany(Person, 'bandUrl').usingSameDocument(true);
+  }
+
+}
+
+class Person extends SolidModel {
+
+  static rdfContexts = {
+    'schema': 'https://schema.org/',
+  };
+
+  static rdfsClasses = ['Person'];
+
+  static fields = {
+    name: FieldType.String,
+    bandUrl: {
+      type: FieldType.Key,
+      rdfProperty: 'schema:memberOf',
+    },
+  };
+
+}
+
+Soukai.loadModels({ Person, Band });
 //import {/*parse,*/ stringify} from 'flatted';
 //import {Task/*, TaskList*/} from '@/plugins/models/Task'
 // You would normally get the Solid POD url from solid-auth-client,
@@ -69,6 +117,8 @@ export default {
   methods: {
     async add(){
       this.$store.dispatch('table/addWorkspace', {path: this.path, name:"___workspace name___"})
+      await this.$createWorkspace("___workspace name___")
+      this.testGroup()
     },
     openWorkspace(url){
       this.$store.commit('table/setWorkspace', url)
@@ -89,49 +139,28 @@ export default {
       //
       // await this.$createWorkspace("A Workspace")
       // await this.$createWorkspace("bob WS")
-       await this.$createWorkspace("BABWorkspace")
+
       let souk_ws = await this.$getWorkspaces(this.storage+this.privacy+'/table/test/workspaces/')
-     this.souk_ws = souk_ws.map(x => ({'name' : x.name, 'createdAt': x.createdAt, url: x.url}))
+      this.souk_ws = souk_ws.map(x => ({'name' : x.name, 'createdAt': x.createdAt, url: x.url}))
       console.log(this.souk_ws)
 
     },
 
+    async testGroup(){
 
 
+      //And here's an example using those models:
+const acdc = await Band.create({url: this.storage+this.privacy+'/table/test/bands/ac-dc', name: 'ac-dc'});
+    //  const acdc = await Band.find(this.storage+this.privacy+'/table/test/bands/ac-dc');
 
+      // You can create the model yourself, and it'll be stored when the parent is saved.
+  //    acdc.relatedMembers.add(new Person({ name: 'Bon Scott' }));
 
+    //  await acdc.save();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    getCircularReplacer(){
-      const seen = new WeakSet();
-      return (key, value) => {
-        if (typeof value === "object" && value !== null) {
-          if (seen.has(value)) {
-            return;
-          }
-          seen.add(value);
-        }
-        return value;
-      };
+      // Or you can use the create method.
+      // Notice how we're not specifying the bandUrl in either scenario.
+      await acdc.relatedMembers.create({ name: 'Angus Young' });
     }
 
 

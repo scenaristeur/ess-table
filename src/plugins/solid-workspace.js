@@ -39,11 +39,6 @@ export default {
           return await Workspace.from(containerUrl).all();
         }
 
-
-
-
-
-
         //Vue.workspaces.push(new Date())
       },
 

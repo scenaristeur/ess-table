@@ -22,10 +22,12 @@ import essTable from './plugins/ess-table'
 Vue.use(essTable)
 
 
-
-
 new Vue({
   router,
   store: store,
-  render: h => h(App)
+  render: h => h(App),
+  // New code - initialize the store
+  created() {
+  //  store.commit('initializeStore');
+  }
 }).$mount('#app')

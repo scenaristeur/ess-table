@@ -60,6 +60,11 @@ https://auth0.com/blog/vuejs-kanban-board-adding-progressive-web-app-features/
 https://medium.com/js-dojo/vuejs-pwa-cache-busting-8d09edd22a31
 https://www.julienpradet.fr/fiches-techniques/pwa-intercepter-les-requetes-http-et-les-mettre-en-cache/
 
+https://jakearchibald.com/2014/offline-cookbook/
+https://www.udacity.com/course/offline-web-applications--ud899
+
+https://serviceworke.rs/caching-strategies.html
+
 - test service-worker.js in development
 https://medium.com/@stephen.trevor.wong/3-steps-to-add-pwa-to-vue-js-in-2020-9f9daa56f9
 modify vue.config.js
