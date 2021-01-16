@@ -43,12 +43,11 @@ h5 {
 .close-button {
   background: transparent;
   border: 0;
-  margin: 0 0 0 20px;
+  margin:  0 0 0 20px;
   padding: 0;
   color: white;
   opacity: 0.3;
-  position: relative;
-  right: 20px;
+  float: right;
 }
 
 .close-button:hover {
