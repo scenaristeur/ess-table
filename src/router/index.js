@@ -11,14 +11,19 @@ const routes = [
   //   component: Home
   // },
   {
+    path: '/',
+    name: 'Home',
+    component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
+  },
+  {
     path: '/backlog',
     name: 'Backlog',
     component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
   },
-  {
-    path: '*',
-    redirect: '/backlog',
-  },
+  // {
+  //   path: '*',
+  //   redirect: '/backlog',
+  // },
   {
     path: '/board',
     name: 'Kanban',

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="page-header container">
-      <h1>Kanban Board</h1>
-      <p class="lead">An example of a Kanban board, written in Vue.js</p>
+      <h1>Ess table</h1>
+      <p class="lead">Kanban & Tables on Solid</p>
     </div>
     <MenuBar />
     <router-view/>
