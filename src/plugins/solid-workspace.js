@@ -2,7 +2,7 @@
 import store from '../store'
 import { /*FieldType,*/ Soukai} from 'soukai';
 
-let containerWSUrl = "https://spoggy-test5.solidcommunity.net/public/table/test/workspaces/"
+let containerWSUrl = "https://spoggy-test5.solidcommunity.net/public/table/workspaces/"
 
 import Workspace from '@/plugins/models/Workspace'
 Soukai.loadModels({ Workspace });
@@ -27,8 +27,8 @@ export default {
           return Vue.prototype.$myAddedProperty
         }
 
-        Vue.prototype.$createWorkspace = async function(name= "ws inconnu"){
-          await Workspace.at(containerWSUrl).create({ name: name });
+        Vue.prototype.$createWorkspace = async function(ws){
+          await Workspace.create(ws);
           const workspaces = await Workspace.from(containerWSUrl).all();
           console.log("Workspaces", workspaces)
           workspaces.forEach((w) => {

@@ -20,9 +20,18 @@
    methods: {
      submitForm() {
        if (this.itemText) {
-         this.$store.commit(this.namespace+'/addItem', {
-           text: this.itemText,
-         });
+
+         if(this.namespace == 'kanban'){
+           this.$store.commit(this.namespace+'/addItem', {
+             text: this.itemText,
+           });
+         }else{
+           console.log('route',this.$route)
+           this.$store.dispatch(this.namespace+'/addItem', {
+             text: this.itemText,
+           });
+         }
+
 
          this.itemText = '';
        }

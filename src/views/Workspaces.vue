@@ -3,7 +3,7 @@
     <p>Workspaces</p>
     <NewItemForm namespace="workspace"/>
     <div class="card" v-for="item in items" :key="item.id">
-      <div class="card-block">
+      <b-button left class="card-block" @click="open(item)">
         <h5 class="card-title"><span class="text-muted">#{{item.id}}</span>
           {{item.text}}
 
@@ -12,7 +12,7 @@
           </button>
           <span :class="badgeClass(item)">{{badgeText(item)}}</span>
         </h5>
-      </div>
+      </b-button>
     </div>
   </div>
 </template>
@@ -46,6 +46,10 @@ export default {
     items: s => [...s.workspace.items.todo, ...s.workspace.items.inProgress, ...s.workspace.items.done]
   }),
   methods: {
+    open(item){
+      this.$router.push({path: '/bases', params: item})
+      console.log(item)
+    },
     itemLane(item) {
       if (this.$store.state.workspace.items.todo.includes(item)) {
         return 'todo';

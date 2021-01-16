@@ -1,4 +1,5 @@
 //import Vue from 'vue'
+import { v4 as uuidv4 } from 'uuid';
 // initial state
 const state = () => ({
   items: {
@@ -6,6 +7,7 @@ const state = () => ({
     inProgress: [],
     done: [],
   },
+  workspaces: [],
   nextId: 1,
 })
 
@@ -14,17 +16,24 @@ const getters = {}
 
 // actions
 const actions = {
-
+  async addItem(context, item) {
+    let path = context.rootState.solid.storage+context.rootState.table.privacy+'/table/workspaces/'
+    let url = path+uuidv4()+'#it'
+  //  console.log('route',this._vm)
+    let ws = await this._vm.$createWorkspace({url: url, name: item.text})
+    console.log(url, ws)
+    context.commit('addItem', item)
+  },
 }
 
 // mutations
 const mutations = {
   async addItem(state, item) {
-
-  let ws = await this._vm.$createWorkspace(item.text)
-  console.log(ws)
     state.items.todo.push(Object.assign(item, { id: state.nextId }));
+    state.workspaces.push(Object.assign(item, { id: state.nextId }));
+
     state.nextId += 1;
+
   },
   updateItems(state, { items, id }) {
     state.items[id] = items;
