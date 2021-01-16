@@ -1,15 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+//import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: Home
+  // },
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/backlog',
+    name: 'Backlog',
+    component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
   },
+  {
+    path: '*',
+    redirect: '/backlog',
+  },
+  {
+    path: '/board',
+    name: 'Kanban',
+    component: () => import(/* webpackChunkName: "kanbanboard" */ '../views/KanbanBoard.vue')
+  },
+  // {
+  //   path: '/workspaces',
+  //   name: 'Workspaces',
+  //   component: () => import(/* webpackChunkName: "tablesviews" */ '../views/WorkspacesView.vue')
+  // },
   {
     path: '/tables',
     name: 'Tables',

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import app from './modules/app'
 import solid from './modules/solid'
 import table from './modules/table'
+import kanban from './modules/kanban'
 
 // Import the plugin module here
 import localStoragePlugin from '@/plugins/localStorage';
@@ -38,6 +39,6 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: { app, solid, table
+  modules: { app, solid, table, kanban
   }
 })
