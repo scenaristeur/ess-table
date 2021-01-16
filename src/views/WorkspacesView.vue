@@ -1,16 +1,6 @@
 <template>
   <div class="container">
 
-    SOUKAI WS : {{ souk_ws.length}}<br>
-
-    <ul>
-      <li v-for="(sws,i) in souk_ws" :key="i">
-        {{sws.name}}<br>
-        {{sws.createdAt}}<br>
-        {{sws.url}}
-      </li>
-    </ul>
-
     <b-card
     no-body
     style="min-width: 10rem;"
@@ -32,6 +22,16 @@
   <b-button pill variant="outline-secondary" size="sm" @click="add"><b-icon-plus></b-icon-plus> Add a workspace</b-button>
 
 </b-card>
+
+SOUKAI WS : {{ souk_ws.length}}<br>
+
+<ul>
+  <li v-for="(sws,i) in souk_ws" :key="i">
+    {{sws.name}}<br>
+    {{sws.createdAt}}<br>
+    {{sws.url}}
+  </li>
+</ul>
 
 </div>
 </template>

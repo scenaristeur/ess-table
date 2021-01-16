@@ -22,6 +22,17 @@ import essTable from './plugins/ess-table'
 Vue.use(essTable)
 
 
+//https://soukai.js.org/guide/going-further.html
+//https://codesandbox.io/s/soukai-example-users-posts-3gryb?from-embed=&file=/src/main.js:23-83
+import Soukai/*, { LogEngine, InMemoryEngine }*/ from "soukai";
+import User from "./models/User";
+import Post from "./models/Post";
+
+Soukai.loadModel("User", User);
+Soukai.loadModel("Post", Post);
+
+
+
 new Vue({
   router,
   store: store,

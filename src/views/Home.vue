@@ -3,9 +3,12 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <SolidLoginButton />
 
+
+
     <Connected v-if="webId != null" />
     <Public v-else />
 
+  <Posts />
     <!-- <HelloWorld /> -->
 
   </div>
@@ -21,7 +24,8 @@ export default {
   //  HelloWorld,
     'SolidLoginButton': () => import('@/components/solid/SolidLoginButton'),
     'Connected': () => import('@/views/Connected.vue'),
-    'Public': () => import('@/views/Public.vue')
+    'Public': () => import('@/views/Public.vue'),
+    'Posts': () => import('@/views/Posts.vue')
   },
   computed:{
     webId: {
