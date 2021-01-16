@@ -4,8 +4,8 @@ export default store => {
   store.subscribe((mutation, state) => {
     // Save the entire state to Local Storage
     if (mutation.type.startsWith("kanban") && state.kanban != undefined){
-    //  console.log('subscribe',mutation, state.kanban)
-      localStorage.setItem('kanban', JSON.stringify(state.kanban));
+      //  console.log('subscribe',mutation, state.kanban)
+      localStorage.setItem('ess-kanban', JSON.stringify(state.kanban));
     }
   });
 };

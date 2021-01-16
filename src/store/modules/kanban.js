@@ -27,10 +27,13 @@ const mutations = {
     state.items[id] = items;
   },
   initializeStore() {
-    const data = localStorage.getItem('kanban');
-    let st = this.state
-    st.kanban = JSON.parse(data)
-    this.replaceState(Object.assign(this.state, st));
+    const data = localStorage.getItem('ess-kanban');
+  //  console.log(data)
+    if (data != null){
+      let st = this.state
+      st.kanban = JSON.parse(data)
+      this.replaceState(Object.assign(this.state, st));
+    }
   },
 
   // Add this mutation which removes an item from the backlog, given the item id
