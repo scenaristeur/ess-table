@@ -20,7 +20,41 @@ export default {
 };
 </script>
 <style>
-#app {
+.page-header h1 {
+  font-weight: 300;
+}
+.card {
+  margin-bottom: 10px;
+}
+.card:last-child {
+  margin-bottom: 25px;
+}
+.card-block {
+  padding: 15px;
+}
+.card-title {
+  margin-bottom: 0;
+}
+
+h5 {
+  margin-bottom: 0;
+}
+
+.close-button {
+  background: transparent;
+  border: 0;
+  margin: 0 0 0 20px;
+  padding: 0;
+  color: white;
+  opacity: 0.3;
+  position: relative;
+  right: 20px;
+}
+
+.close-button:hover {
+  cursor: pointer;
+}
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -51,5 +85,5 @@ export default {
 }
 .card-block {
   padding: 15px;
-}
+} */
 </style>

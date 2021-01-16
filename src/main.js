@@ -14,6 +14,10 @@ Vue.use(IconsPlugin)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+//https://bootswatch.com/
+import "bootswatch/dist/superhero/bootstrap.min.css";
+
+
 Vue.config.productionTip = false
 
 
@@ -39,6 +43,6 @@ new Vue({
   render: h => h(App),
   // New code - initialize the store
   created() {
-  //  store.commit('initializeStore');
+    store.commit('kanban/initializeStore');
   }
 }).$mount('#app')
