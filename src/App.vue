@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="page-header">
+    <div class="page-header container">
       <h1>Kanban Board</h1>
       <p class="lead">An example of a Kanban board, written in Vue.js</p>
     </div>
