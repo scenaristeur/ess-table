@@ -2,7 +2,7 @@
   <div id="app">
     <div class="page-header container">
       <h1>Ess table</h1>
-      <p class="lead">Kanban & Tables on Solid</p>
+      <p class="lead">Kanban & Tables on Solid.</p>
     </div>
     <MenuBar />
     <router-view/>

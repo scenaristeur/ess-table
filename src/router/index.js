@@ -10,14 +10,15 @@ const routes = [
   //   name: 'Home',
   //   component: Home
   // },
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
+  // },
   {
     path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
-  },
-  {
-    path: '/backlog',
     name: 'Backlog',
+    alias: '/backlog',
     component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
   },
   // {
