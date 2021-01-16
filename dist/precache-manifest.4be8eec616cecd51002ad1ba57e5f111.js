@@ -4,12 +4,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/404.html"
   },
   {
-    "revision": "24898050a65fd7e41633",
+    "revision": "5983582575cac7ab371b",
     "url": "/ess-table/css/app.0d554beb.css"
   },
   {
-    "revision": "6bf84f9c09bf1e6475a7",
-    "url": "/ess-table/css/chunk-0bac0830.4ee9f3c0.css"
+    "revision": "eccac8a3a43f71e39643",
+    "url": "/ess-table/css/chunk-0e88118b.4ee9f3c0.css"
   },
   {
     "revision": "740931bf3518ba3fafe9",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/css/chunk-8cbc85f4.6773d80b.css"
   },
   {
-    "revision": "716203e7f072d11ce9c0",
+    "revision": "762968d8644b05901046",
     "url": "/ess-table/css/chunk-a72e91f0.44553381.css"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/css/chunk-vendors.b817d239.css"
   },
   {
-    "revision": "b3f05dd39b00489207a5c3d48861d600",
+    "revision": "41935ce2a04a657029a81468b6b565ab",
     "url": "/ess-table/index.html"
   },
   {
@@ -36,16 +36,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/js/about.d0897bc7.js"
   },
   {
-    "revision": "24898050a65fd7e41633",
-    "url": "/ess-table/js/app.5b9db28a.js"
+    "revision": "5983582575cac7ab371b",
+    "url": "/ess-table/js/app.40e60b37.js"
   },
   {
-    "revision": "ac184d401a08ea5b799f",
-    "url": "/ess-table/js/backlog.b83a78d1.js"
+    "revision": "fafeb43176ba0ca5587a",
+    "url": "/ess-table/js/backlog.a49e3b44.js"
   },
   {
-    "revision": "6bf84f9c09bf1e6475a7",
-    "url": "/ess-table/js/chunk-0bac0830.154ecd8c.js"
+    "revision": "eccac8a3a43f71e39643",
+    "url": "/ess-table/js/chunk-0e88118b.ae71ed76.js"
   },
   {
     "revision": "2508ffe54945aed9e2b8",
@@ -58,6 +58,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "204155def27799951e01",
     "url": "/ess-table/js/chunk-2d20fb75.ce13b8a1.js"
+  },
+  {
+    "revision": "8f63f403106fc1c6bddc",
+    "url": "/ess-table/js/chunk-2d226c5a.db412975.js"
   },
   {
     "revision": "af811878ee1dbef25d5f",
@@ -76,16 +80,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/js/chunk-8cbc85f4.55257ddc.js"
   },
   {
-    "revision": "716203e7f072d11ce9c0",
-    "url": "/ess-table/js/chunk-a72e91f0.a07c025b.js"
+    "revision": "762968d8644b05901046",
+    "url": "/ess-table/js/chunk-a72e91f0.560cf5f6.js"
   },
   {
     "revision": "5c6e7255992c5b1315d3",
     "url": "/ess-table/js/chunk-vendors.8037501c.js"
   },
   {
-    "revision": "e342d89bd69ecb16b9b9",
-    "url": "/ess-table/js/kanbanboard.b2352ad2.js"
+    "revision": "d0daefe1a195ce9d058a",
+    "url": "/ess-table/js/kanbanboard.2ec3c7f9.js"
   },
   {
     "revision": "5e5df65b28708d0782ef",
@@ -94,6 +98,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ccd2d59399e1d121e9df",
     "url": "/ess-table/js/templates.55b4c096.js"
+  },
+  {
+    "revision": "4009ac2c3a87badbcb01",
+    "url": "/ess-table/js/workspaces.d01dec7b.js"
   },
   {
     "revision": "068fc75e7e0b089cd746bab7cc4d8d87",

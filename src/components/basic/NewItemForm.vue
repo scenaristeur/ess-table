@@ -1,7 +1,7 @@
 <template>
     <div class="add-item">
         <form action="#" method="post" v-on:submit.prevent="submitForm" class="mb-3">
-            <b-form-input v-model="itemText" v-on:submit.prevent="submitForm" placeholder="Add something to the backlog"></b-form-input>
+            <b-form-input v-model="itemText" v-on:submit.prevent="submitForm" :placeholder="'Add something to the '+namespace"></b-form-input>
             <!-- <input type="text" v-model="itemText" placeholder="Add something to the backlog"> -->
         </form>
 
@@ -11,6 +11,7 @@
 <script>
  export default {
    name: 'NewItemForm',
+   props: ['namespace'],
    data() {
      return {
        itemText: '',
@@ -19,7 +20,7 @@
    methods: {
      submitForm() {
        if (this.itemText) {
-         this.$store.commit('kanban/addItem', {
+         this.$store.commit(this.namespace+'/addItem', {
            text: this.itemText,
          });
 

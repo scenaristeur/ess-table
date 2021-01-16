@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="board container">
     <div class="row">
       <div class="col-md">
         <TaskLane id="todo" title="To-Do" :items="todoItems" />

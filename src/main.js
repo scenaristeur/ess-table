@@ -21,7 +21,7 @@ import "bootswatch/dist/superhero/bootstrap.min.css";
 Vue.config.productionTip = false
 
 
-import essTable from './plugins/ess-table'
+import essTable from '@/plugins/ess-table'
 
 Vue.use(essTable)
 
@@ -44,5 +44,6 @@ new Vue({
   // New code - initialize the store
   created() {
     store.commit('kanban/initializeStore');
+    store.commit('workspace/initializeStore');
   }
 }).$mount('#app')

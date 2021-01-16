@@ -30,11 +30,11 @@ const routes = [
     name: 'Kanban',
     component: () => import(/* webpackChunkName: "kanbanboard" */ '../views/KanbanBoard.vue')
   },
-  // {
-  //   path: '/workspaces',
-  //   name: 'Workspaces',
-  //   component: () => import(/* webpackChunkName: "tablesviews" */ '../views/WorkspacesView.vue')
-  // },
+  {
+    path: '/workspaces',
+    name: 'Workspaces',
+    component: () => import(/* webpackChunkName: "workspaces" */ '../views/Workspaces.vue')
+  },
   {
     path: '/tables',
     name: 'Tables',

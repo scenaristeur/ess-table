@@ -17,8 +17,9 @@ export default {
     // create a mixin
     Vue.mixin({
       created() {
-      //  console.log(Vue, options);
-      //  console.log(store.state.table.workspaces)
+        console.log("solid-workspace plugin")
+        //  console.log(Vue, options);
+        //  console.log(store.state.table.workspaces)
         this.ws = store.state.table.workspaces
 
         Vue.prototype.$myAddedProperty = 'Example Property'

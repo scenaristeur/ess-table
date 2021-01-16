@@ -1,7 +1,7 @@
 <template>
   <div class="backlog-view container">
-    <p>Backlog</p>
-    <NewItemForm namespace="kanban"/>
+    <p>Workspaces</p>
+    <NewItemForm namespace="workspace"/>
     <div class="card" v-for="item in items" :key="item.id">
       <div class="card-block">
         <h5 class="card-title"><span class="text-muted">#{{item.id}}</span>
@@ -43,13 +43,13 @@ export default {
     // 'BasesView': () => import('@/views/BasesView')
   },
   computed: mapState({
-    items: s => [...s.kanban.items.todo, ...s.kanban.items.inProgress, ...s.kanban.items.done]
+    items: s => [...s.workspace.items.todo, ...s.workspace.items.inProgress, ...s.workspace.items.done]
   }),
   methods: {
     itemLane(item) {
-      if (this.$store.state.kanban.items.todo.includes(item)) {
+      if (this.$store.state.workspace.items.todo.includes(item)) {
         return 'todo';
-      } else if (this.$store.state.kanban.items.inProgress.includes(item)) {
+      } else if (this.$store.state.workspace.items.inProgress.includes(item)) {
         return 'inProgress';
       }
 
@@ -64,7 +64,7 @@ export default {
       return `${badgeDetail[lane].class} pull-right`;
     },
     removeItem(item) {
-      this.$store.commit('kanban/removeItem', item);
+      this.$store.commit('workspace/removeItem', item);
     }
   },
 };
