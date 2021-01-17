@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
+
  export default {
    name: 'NewItemForm',
    props: ['namespace'],
@@ -27,8 +29,11 @@
            });
          }else{
            console.log('route',this.$route)
+           let path = this.$store.state.solid.storage+this.$store.state.table.privacy+'/table/workspaces/'
+           let url = path+uuidv4()+'.ttl'//#it'
            this.$store.dispatch(this.namespace+'/addItem', {
-             text: this.itemText,
+             url : url,
+             name: this.itemText,
            });
          }
 

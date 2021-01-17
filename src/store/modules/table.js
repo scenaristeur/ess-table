@@ -18,7 +18,7 @@ const state = () => ({
   record: {},
   tick_workspaces: new Date(),
   recordTick: new Date(),
-//  fields: []
+  //  fields: []
 })
 
 // getters
@@ -46,6 +46,7 @@ const actions = {
     dispatch('getWorkspaces')
   },
   async addBase({dispatch}, base){
+    console.log(base)
     //  this.workspace.bases.unshift({name: 'new base', tables:[], url: "" })
     //  this.$store.commit('table/setWorkspaces', this.workspaces)
     let file = base.path+uuidv4()+'.ttl'

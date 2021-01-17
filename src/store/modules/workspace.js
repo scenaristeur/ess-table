@@ -1,5 +1,5 @@
 //import Vue from 'vue'
-import { v4 as uuidv4 } from 'uuid';
+
 // initial state
 const state = () => ({
   items: {
@@ -17,13 +17,9 @@ const getters = {}
 // actions
 const actions = {
   async addItem(context, item) {
-    let path = context.rootState.solid.storage+context.rootState.table.privacy+'/table/workspaces/'
-    let url = path+uuidv4()+'#it'
   //  console.log('route',this._vm)
   context.commit('addItem', item)
-    let ws = await this._vm.$createWorkspace({url: url, name: item.text})
-    console.log(url, ws)
-
+  await this._vm.$createWorkspace(item)
   },
 }
 

@@ -28,7 +28,7 @@
       </li>
 
     </ul>
-<a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a>
+    <a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a>
 
     <b-modal id="modal-ws" title="Rename" @ok="edit_ws_name">
       <b-form-input v-model="name" placeholder="Enter the name of the workspace"></b-form-input>
@@ -66,6 +66,12 @@ export default {
       tick: new Date()
     }
   },
+  async created(){
+    console.log(this.$route)
+    let ws = this.$route.query.url
+    this.name = this.$route.query.name || "todo get name"
+    this.$store.commit('table/setWorkspace', ws)
+  },
   // async created() {
   //   //do something after creating vue instance
   //   let name =  await ldflex[this.workspace].label
@@ -75,7 +81,7 @@ export default {
   methods: {
     async add(){
       let base = {path: this.storage+this.privacy+'/table/bases/', name:"___base name___", workspace: this.workspace}
-    //  console.log(base)
+      //  console.log(base)
       this.$store.dispatch('table/addBase', base)
     },
     showTables(b) {

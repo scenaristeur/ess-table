@@ -2,10 +2,10 @@
   <div class="backlog-view container">
     <p>Workspaces</p>
     <NewItemForm namespace="workspace"/>
-    <div class="card" v-for="item in items" :key="item.id">
-      <b-button left class="card-block" @click="open(item)">
-        <h5 class="card-title"><span class="text-muted">#{{item.id}}</span>
-          {{item.text}}
+    <div class="card" v-for="item in items" :key="item.url">
+      <b-button class="card-block" @click.self="open(item)" style="text-align:left">
+        <h5 class="card-title"  @click.self="open(item)"><span class="text-muted" @click.self="open(item)">#{{item.id}}</span>
+          {{item.name}}
 
           <button type="button" class="close-button pull-right" @click="removeItem(item)">
             <span>&times;</span>
@@ -47,8 +47,9 @@ export default {
   }),
   methods: {
     open(item){
-      this.$router.push({path: '/bases', params: item})
+
       console.log(item)
+      this.$router.push({name: 'Bases', query: item})
     },
     itemLane(item) {
       if (this.$store.state.workspace.items.todo.includes(item)) {
@@ -61,7 +62,7 @@ export default {
     },
     badgeText(item) {
       const lane = this.itemLane(item);
-      return badgeDetail[lane].text;
+      return badgeDetail[lane].name;
     },
     badgeClass(item) {
       const lane = this.itemLane(item);
