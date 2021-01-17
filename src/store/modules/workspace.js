@@ -2,11 +2,11 @@
 
 // initial state
 const state = () => ({
-  items: {
-    todo: [],
-    inProgress: [],
-    done: [],
-  },
+  // items: {
+  //   todo: [],
+  //   inProgress: [],
+  //   done: [],
+  // },
   workspaces: [],
   nextId: 1,
 })
@@ -26,7 +26,7 @@ const actions = {
 // mutations
 const mutations = {
   async addItem(state, item) {
-    state.items.todo.push(Object.assign(item, { id: state.nextId }));
+  //  state.items.todo.push(Object.assign(item, { id: state.nextId }));
     state.workspaces.push(Object.assign(item, { id: state.nextId }));
 
     state.nextId += 1;

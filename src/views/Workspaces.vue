@@ -43,7 +43,7 @@ export default {
     // 'BasesView': () => import('@/views/BasesView')
   },
   computed: mapState({
-    items: s => [...s.workspace.items.todo, ...s.workspace.items.inProgress, ...s.workspace.items.done]
+    items: s => [...s.workspace.items.todo, ...s.workspace.items.inProgress, ...s.workspace.items.done, ... s.workspace.workspaces]
   }),
   methods: {
     open(item){
