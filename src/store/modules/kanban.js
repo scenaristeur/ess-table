@@ -14,21 +14,26 @@ const getters = {}
 
 // actions
 const actions = {
-
+  async addItem(context, item) {
+    console.log(item)
+    context.commit('addItem', item)
+    await this._vm.$createTask(item)
+  },
 }
 
 // mutations
 const mutations = {
-  addItem(state, item) {
+  async addItem(state, item) {
     state.items.todo.push(Object.assign(item, { id: state.nextId }));
     state.nextId += 1;
+
   },
   updateItems(state, { items, id }) {
     state.items[id] = items;
   },
   initializeStore() {
     const data = localStorage.getItem('ess-kanban');
-  //  console.log(data)
+    //  console.log(data)
     if (data != null){
       let st = this.state
       st.kanban = JSON.parse(data)

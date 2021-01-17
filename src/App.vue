@@ -5,8 +5,14 @@
       <p class="lead">Kanban & Tables on Solid.</p>
     </div>
     <MenuBar />
-    <router-view/>
+
+    <router-view v-if="webId != null" />
+    <b-container v-else>
+      Please Login to use Ess Tables <br>
+      data will be stored in your 'public/table/' folder.
+    </b-container>
     <SolidTrackSession />
+    <a href="https://github.com/scenaristeur/ess-table/" target="_blank">source</a>
   </div>
 </template>
 <script>
@@ -14,9 +20,15 @@ export default {
   name: 'app',
   components: {
     'SolidTrackSession': () => import('@/components/solid/SolidTrackSession'),
-    'MenuBar': () => import('@/components/MenuBar'),
+    'MenuBar': () => import('@/components/layout/MenuBar'),
     // 'Table': () => import('@/components/table/Table'),
   },
+  computed:{
+    webId: {
+      get: function() { return this.$store.state.solid.webId},
+      set: function() {}
+    },
+  }
 };
 </script>
 <style>

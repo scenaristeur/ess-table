@@ -23,19 +23,20 @@ import { v4 as uuidv4 } from 'uuid';
      submitForm() {
        if (this.itemText) {
 
-         if(this.namespace == 'kanban'){
-           this.$store.commit(this.namespace+'/addItem', {
-             text: this.itemText,
-           });
-         }else{
+         // if(this.namespace == 'kanban'){
+         //   this.$store.commit(this.namespace+'/addItem', {
+         //     text: this.itemText,
+         //   });
+         // }else{
            console.log('route',this.$route)
            let path = this.$store.state.solid.storage+this.$store.state.table.privacy+'/table/workspaces/'
            let url = path+uuidv4()+'.ttl'//#it'
            this.$store.dispatch(this.namespace+'/addItem', {
              url : url,
              name: this.itemText,
+             text: this.itemText
            });
-         }
+        // }
 
 
          this.itemText = '';

@@ -15,20 +15,20 @@ const routes = [
   //   name: 'Home',
   //   component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
   // },
+
   {
     path: '/',
+    redirect: '/workspaces',
+  },
+  {
+    path: '/backlog',
     name: 'Backlog',
-    alias: '/backlog',
     component: () => import(/* webpackChunkName: "backlog" */ '../views/Backlog.vue')
   },
-  // {
-  //   path: '*',
-  //   redirect: '/backlog',
-  // },
   {
     path: '/board',
     name: 'Kanban',
-    component: () => import(/* webpackChunkName: "kanbanboard" */ '../views/KanbanBoard.vue')
+    component: () => import(/* webpackChunkName: "kanban" */ '../views/KanbanBoard.vue')
   },
   {
     path: '/workspaces',
@@ -39,6 +39,11 @@ const routes = [
     path: '/tables',
     name: 'Tables',
     component: () => import(/* webpackChunkName: "tablesviews" */ '../views/TablesView.vue')
+  },
+  {
+    path: '/activity',
+    name: 'Activity',
+    component: () => import(/* webpackChunkName: "activity" */ '../views/Activity.vue')
   },
   // {
   //   path: '/pod',
@@ -72,7 +77,7 @@ const routes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "workspace" */ '../views/Workspace.vue')
   // },
-   {
+  {
     path: '/bases',
     name: 'Bases',
     // route level code-splitting

@@ -17,9 +17,10 @@ const getters = {}
 // actions
 const actions = {
   async addItem(context, item) {
-  //  console.log('route',this._vm)
+    console.log('item', item)
   context.commit('addItem', item)
   await this._vm.$createWorkspace(item)
+  this.dispatch('table/getWorkspaces')
   },
 }
 
@@ -32,10 +33,10 @@ const mutations = {
     state.nextId += 1;
 
   },
-  updateItems(state, { items, id }) {
-    state.items[id] = items;
+  updateItems(state, { items, url }) {
+    state.items[url] = items;
   },
-  initializeStore() {
+  async initializeStore() {
     const data = localStorage.getItem('ess-workspace');
     //  console.log(data)
     if (data != null){
@@ -43,13 +44,17 @@ const mutations = {
       st.workspace = JSON.parse(data)
       this.replaceState(Object.assign(this.state, st));
     }
+    // let containerUrl = "https://spoggy-test5.solidcommunity.net/public/table/workspaces/"
+    //
+    // let ws = await this._vm.$getWorkspaces(containerUrl)
+    // console.log(ws)
   },
 
   // Add this mutation which removes an item from the backlog, given the item id
   removeItem(state, item) {
-    [state.items.todo, state.items.inProgress, state.items.done].forEach(
+    [state.workspaces].forEach(
       array => {
-        const indexInArray = array.findIndex(i => i.id === item.id);
+        const indexInArray = array.findIndex(i => i.url === item.url);
         if (indexInArray > -1) {
           array.splice(indexInArray, 1);
         }
