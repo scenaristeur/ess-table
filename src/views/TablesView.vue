@@ -97,6 +97,7 @@ Fields : {{ fields }}
                 </template> -->
               </b-form-select>
             </b-input-group>
+            <b-form-checkbox v-model="field.multiple">Multiple</b-form-checkbox>            
             <b-input-group prepend="default value">
               <b-form-input v-model="field.default"></b-form-input>
             </b-input-group>
@@ -137,14 +138,20 @@ export default {
       table_name:"",
       tick: new Date(),
       field_types: [
-        { value: 'single_line_text', text: 'Single Line Text' },
-        { value: 'single_select', text: 'Single Select' },
+        { value: 'text', text: 'Text' },
+        { value: 'number', text: 'Number' },
         { value: 'link', text: 'Link to another Record or Resource' },
-        { value: 'numeric', text: 'Numeric' },
-        { value: 'boolean', text: 'Boolean' },
-        { value: 'tristate', text: 'Tristate' },
-        { value: 'phone', text: 'Phone' },
+        { value: 'email', text: 'Email' },
+        { value: 'password', text: 'Password' },
+        { value: 'checkbox', text: 'Checkbox' },
+      //  { value: 'url', text: 'Url' },
+        { value: 'tel', text: 'Telephone' },
+        { value: 'date', text: 'Date' },
+        { value: 'time', text: 'Time' },
+        { value: 'range', text: 'Range' },
+        { value: 'color', text: 'Color' },
         { value: 'location', text: 'Location' },
+        { value: 'select', text: 'Select' },
       ],
       default_fields: [
         {

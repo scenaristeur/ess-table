@@ -26,45 +26,64 @@
           {{ record[f.key] || f.default  }}
           <hr>
           {{ f.type }}
-          <b-form-checkbox v-model="record[f.key]" v-if="f.type=='boolean'">{{f.key}}</b-form-checkbox>
-          <b-form-input v-model="record[f.key]" :placeholder="f.key" v-if="f.type == 'single_line_text' || f.type == 'link'"></b-form-input>
+          <!--
+          { value: 'text', text: 'Text' },
+          { value: 'number', text: 'Number' },
+          { value: 'link', text: 'Link to another Record or Resource' },
+          { value: 'email', text: 'Email' },
+          { value: 'password', text: 'Password' },
+          { value: 'checkbox', text: 'Checkbox' },
+          { value: 'url', text: 'Url' },
+          { value: 'tel', text: 'Telephone' },
+          { value: 'date', text: 'Date' },
+          { value: 'time', text: 'Time' },
+          { value: 'range', text: 'Range' },
+          { value: 'color', text: 'Color' },
+          { value: 'location', text: 'Location' },
+          { value: 'select', text: 'Select' },
+        -->
+
+        <select v-model="record[f.key]" v-if="f.type == 'select'"></select>
+        <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'link'"></b-form-input>
+        <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'location'"></b-form-input>
+        <b-form-checkbox v-model="record[f.key]" v-else-if="f.type == 'checkbox'"> {{ f.key }}</b-form-checkbox>
+        <b-form-input v-model="record[f.key]" :type="f.type" :placeholder="f.key" v-else></b-form-input>
 
 
 
+        <hr>
+        <small>  {{ f}}</small>
+      </b-list-group-item>
 
-          <hr>
-          <small>  {{ f}}</small>
-        </b-list-group-item>
+    </b-list-group>
+  </p>
+</b-modal>
 
-      </b-list-group>
-    </p>
-  </b-modal>
+<b-modal id="modal-note" title="New Note" @ok="addNote">
+  <b-form-textarea
+  id="textarea"
+  v-model="note"
+  placeholder="Enter something..."
+  rows="3"
+  max-rows="6"
+  ></b-form-textarea>
+</b-modal>
 
-  <b-modal id="modal-note" title="New Note" @ok="addNote">
-    <b-form-textarea
-    id="textarea"
-    v-model="note"
-    placeholder="Enter something..."
-    rows="3"
-    max-rows="6"
-    ></b-form-textarea>
-  </b-modal>
+<b-modal id="modal-files" title="Add files" @ok="addFiles">
+  <b-form-file multiple
+  accept="*"
+  v-model="files"
+  placeholder="Choose a file or drop it here..."
+  drop-placeholder="Drop file here..."
+  @input="onInput"
+  ></b-form-file>
+  <div ref="preview"></div>
+</b-modal>
 
-  <b-modal id="modal-files" title="Add files" @ok="addFiles">
-    <b-form-file multiple
-    accept="*"
-    v-model="files"
-    placeholder="Choose a file or drop it here..."
-    drop-placeholder="Drop file here..."
-    @input="onInput"
-    ></b-form-file>
-    <div ref="preview"></div>
-  </b-modal>
+<b-modal id="modal-record-name" title="Rename" @ok="edit_record_name">
+  <b-form-input v-model="record.name" placeholder="Enter the name of the record"></b-form-input>
 
-  <b-modal id="modal-record-name" title="Rename" @ok="edit_record_name">
-    <b-form-input v-model="record.name" placeholder="Enter the name of the record"></b-form-input>
-
-  </b-modal>
+</b-modal>
 
 
 </div>
