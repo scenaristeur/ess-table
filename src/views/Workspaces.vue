@@ -52,6 +52,7 @@ export default {
     }
   },
   created(){
+    this.getWorkspaces()
     //  this.$store.dispatch('table/getWorkspaces');
   },
   // computed: mapState({
@@ -77,7 +78,7 @@ export default {
     open(item){
 
       console.log(item)
-      this.$router.push({name: 'Bases', query: item})
+      this.$router.push({name: 'Bases', query: {url: item.url}})
     },
     // async add(){
     //   this.$store.dispatch('table/addWorkspace', {path: this.path, name:"___workspace name___"})

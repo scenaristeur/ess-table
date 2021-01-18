@@ -89,7 +89,7 @@ export default {
       console.log("SF",string_fields)
       let table_fields = string_fields == undefined ? this.default_fields : JSON.parse(string_fields)
       console.error(table_fields)
-    //  this.fields = table_fields
+      //  this.fields = table_fields
 
       for await (const record of ldflex[this.url]['https://www.dublincore.org/specifications/dublin-core/dcmi-terms/hasPart']) {
         let label = await ldflex[record].label
@@ -102,31 +102,50 @@ export default {
           attachments.push(`${attachment}`)
         }
         let rec = {label: label, url: `${record}`, notes: notes, attachments: attachments}
-    //    console.log('Fields', this.fields)
-      //  let special_preds = this.special_preds
+        //    console.log('Fields', this.fields)
+        //  let special_preds = this.special_preds
 
         this.fields.forEach(async function(f) {
-          console.warn("KEY",f.key)
-          for (const [key, value] of Object.entries(f)) {
-console.log( key, value)
-          //   if (!special_preds.includes(key)){
-          //     console.log(key, typeof value, value)
-          //     let val = ""
-          //     switch (typeof value) {
-          //       case 'string':
-          //       case 'boolean':
-          //       val = await ldflex[record][record+"#"+value]
-          //       console.log(val)
-          //       break;
-          //       default:
-          //       console.log("todo",typeof value)
-          //     }
-          // //    rec[key] = `${val}`
-          //
-          //   }else{
-          //     console.log("already treated",key, typeof value, value)
-          //   }
+          console.log("test f",f)
+          if(f.key != 'url' && f.key != 'label' && f.key != 'attachments' && f.key != 'notes'){
+            let pred = record+'#'+f.key.split(' ').join('+');
+
+            //IF PLUSIEURS VALEURS
+            if (f.type == "single_line_text" || f.type == 'link'){
+              let v = await ldflex[record][pred]
+              rec[f.key] = `${v}`
+            }else{
+              let values = []
+              for await (const v of ldflex[record][pred]) {
+                console.log("KEY",f.key, `${v}`)
+                values.push(`${v}`)
+              }
+              rec[f.key] = values
+            }
+
+            console.log(rec)
+
+            //           for (const [key, value] of Object.entries(f)) {
+            // console.log( key, value)
+            //   if (!special_preds.includes(key)){
+            //     console.log(key, typeof value, value)
+            //     let val = ""
+            //     switch (typeof value) {
+            //       case 'string':
+            //       case 'boolean':
+            //       val = await ldflex[record][record+"#"+value]
+            //       console.log(val)
+            //       break;
+            //       default:
+            //       console.log("todo",typeof value)
+            //     }
+            // //    rec[key] = `${val}`
+            //
+            //   }else{
+            //     console.log("already treated",key, typeof value, value)
+            //   }
             //  console.log(key+'->'+value)
+            //  }
           }
         });
         console.warn(rec)

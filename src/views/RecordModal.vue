@@ -181,13 +181,13 @@ export default {
             break;
             default:
             console.log(`${key}: ${value}, ${typeof value}`);
-            await ldflex[this.record.url][this.record.url+"#"+key].add(value)
 
-
+            if (typeof value == 'string'){
+              await ldflex[this.record.url][this.record.url+"#"+key.split(' ').join('+')].set(value)
+            }else if (typeof value == 'object'){
+              await ldflex[this.record.url][this.record.url+"#"+key.split(' ').join('+')].add(value)
+            }
           }
-
-
-
         }
       },
       async edit_record_name(){

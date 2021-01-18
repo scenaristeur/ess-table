@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 //import Home from '../views/Home.vue'
+
+import { fetchDocument } from 'tripledoc';
+import { vcard,  dct /* rdfs, foaf, ldp, acl */} from 'rdf-namespaces'
+import axios from 'axios';
 
 Vue.use(VueRouter)
 
@@ -122,3 +127,52 @@ const router = new VueRouter({
 })
 
 export default router
+
+
+
+router.beforeEach((to, from, next) => {
+  //console.log("route",to, from, next)
+  let city = ""
+  axios.get('https://ipapi.co/json/')
+  .then(function (response) {
+    // handle success
+    //  console.log("RESP",JSON.stringify(response, null, 2));
+    city = response.data.city
+    //     console.log("city", city)
+  })
+  .catch(function (error) {
+    // handle error
+    console.log("ERR",error);
+  })
+  .then(async function () {
+    //   console.log("DONE")
+    // always executed
+
+    var dateObj = new Date();
+    var date = dateObj.toISOString()
+    let log="https://spoggy.solidweb.org/private/logs/log-ess.ttl"
+    // let w_l = window.location.toString()
+    let logDoc = await fetchDocument(log)
+    let subj = logDoc.addSubject()
+    // console.log("subj",subj)
+    subj.addString(dct.created, date)
+    subj.addRef(vcard.fn, store.state.solid.webId)
+    subj.addString("https://schema.org/url_to", to.path)
+    subj.addString("https://schema.org/url_from", from.path)
+    subj.addString("https://schema.org/location", city)
+    logDoc.save()
+
+    next()
+    /*
+    var ip = '208.67.222.222'
+    $.get('https://ipapi.co/'+ip+'/latlong/', function(response){
+    var latlong = response.split(',');
+    console.log(latlong);
+    $.get('http://api.openweathermap.org/data/2.5/weather?lat=' + latlong[0] + '&lon=' + latlong[1] + '&appid=API_KEY', function(wResponse){
+    console.log(weather);
+  })
+})*/
+});
+
+
+})

@@ -69,7 +69,7 @@ export default {
   async created(){
     console.log(this.$route)
     let ws = this.$route.query.url
-    this.name = this.$route.query.name || "todo get name"
+    //this.name = this.$route.query.name || "todo get name"
     this.$store.commit('table/setWorkspace', ws)
   },
   // async created() {
