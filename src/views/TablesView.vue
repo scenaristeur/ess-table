@@ -6,7 +6,8 @@
         </b-icon-pen>
       </b-button>
     </h2>
-    <a :href="base" target="_blank">base <b-icon-link45deg></b-icon-link45deg></a>
+    <a :href="base" target="_blank">base <b-icon-link45deg></b-icon-link45deg></a> |
+    <a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+base" target="_blank">base graphe <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a>
 
 
     <b-card no-body>

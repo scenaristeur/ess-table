@@ -14,11 +14,16 @@
     selected-variant="primary"
     @row-selected="onRecordSelected">
     <template #cell(url)="row">
-      <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank"><b-icon-link45deg></b-icon-link45deg></a></b-button>
+      <b-button pill variant="outline-primary" size="sm"><a :href="row.item.url" target="_blank">
+        <b-icon-link45deg></b-icon-link45deg></a></b-button>
+        <b-button pill variant="outline-primary" size="sm"><a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+row.item.url" target="_blank">
+          <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a></b-button>
     </template>
   </b-table>
 
-  <a :href="url" target="_blank">table <b-icon-link45deg></b-icon-link45deg></a>
+  <a :href="url" target="_blank">table <b-icon-link45deg></b-icon-link45deg></a> |
+  <a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+url" target="_blank">table graphe <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a>
+
 
 </b-container>
 </template>

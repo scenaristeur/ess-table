@@ -28,7 +28,8 @@
       </li>
 
     </ul>
-    <a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a>
+    <a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a> |
+    <a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+workspace" target="_blank">workspace graphe <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a>
 
     <b-modal id="modal-ws" title="Rename" @ok="edit_ws_name">
       <b-form-input v-model="name" placeholder="Enter the name of the workspace"></b-form-input>
