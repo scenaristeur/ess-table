@@ -101,18 +101,13 @@ export default {
       this.$store.commit('table/togglePrivacy')
     },
     async getWorkspaces(){
-      this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
-      // await this.$createPerson()
-      // await this.$createPerson("bab")
-      // await this.$createPerson("bob")
-      //
-      // await this.$createWorkspace("A Workspace")
-      // await this.$createWorkspace("bob WS")
+      if (this.storage != null){
+        this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
+        let souk_ws = await this.$getWorkspaces(this.storage+this.privacy+'/table/test/workspaces/')
+        this.souk_ws = souk_ws.map(x => ({'name' : x.name, 'createdAt': x.createdAt, 'updatedAt': x.updatedAt, url: x.url})).sort((itemA, itemB) => new Date(itemA.updatedAt) - new Date(itemB.updatedAt));
 
-      let souk_ws = await this.$getWorkspaces(this.storage+this.privacy+'/table/test/workspaces/')
-      this.souk_ws = souk_ws.map(x => ({'name' : x.name, 'createdAt': x.createdAt, 'updatedAt': x.updatedAt, url: x.url})).sort((itemA, itemB) => new Date(itemA.updatedAt) - new Date(itemB.updatedAt));
-
-      console.log(this.souk_ws)
+        console.log(this.souk_ws)
+      }
 
     },
     itemLane(item) {

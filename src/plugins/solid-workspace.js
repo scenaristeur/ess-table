@@ -1,4 +1,7 @@
-import store from '../store'
+//import store from '../store'
+// if (store.state.solid.storage != null && store.state.table.privacy != null){
+//     let url = store.state.solid.storage+store.state.table.privacy+'/table/workspaces/'
+//   console.log("workspace url",url)
 import Soukai from 'soukai';
 
 
@@ -20,9 +23,7 @@ export default {
         }
 
         Vue.prototype.$getWorkspaces = async function(containerUrl){
-          let url = store.state.solid.storage+store.state.table.privacy+'/table/workspaces/'
-          console.log("workspace url",url)
-          return await Workspace.from(containerUrl).all();
+            return await Workspace.from(containerUrl).all()  || []
         }
 
       },

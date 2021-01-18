@@ -5,6 +5,10 @@
         <b-icon-pen>
         </b-icon-pen>
       </b-button>
+      <b-button variant="outline-info" @click='fork' size="sm">
+        <b-icon-alt>
+        </b-icon-alt>
+      </b-button>
     </h2>
     <a :href="base" target="_blank">base <b-icon-link45deg></b-icon-link45deg></a> |
     <a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+base" target="_blank">base graphe <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a>
@@ -236,6 +240,11 @@ export default {
       let table = {path: this.storage+this.privacy+'/table/tables/', name:"___table name___", base: this.base}
       //console.log("new table", table)
       this.$store.dispatch('table/addTable', table)
+    },
+    fork(){
+      console.log(this.base)
+
+
     }
   },
   watch:{
