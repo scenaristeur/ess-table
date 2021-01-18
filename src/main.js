@@ -44,6 +44,6 @@ new Vue({
   // New code - initialize the store
   created() {
     store.commit('kanban/initializeStore');
-    store.commit('workspace/initializeStore');
+  //  store.commit('workspace/initializeStore');
   }
 }).$mount('#app')

@@ -89,7 +89,7 @@ const actions = {
     dispatch('getTables')
   },
   async getWorkspaces(context, url = context.rootState.solid.storage+context.state.privacy+'/table/workspaces/'){
-    //  console.log("UPDATE", url)
+      console.log("GET WORKSPACES : FILES AT ", url)
     if (! await fc.itemExists( url )){
       await fc.createFolder(url)
     }
