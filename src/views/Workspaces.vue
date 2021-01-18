@@ -1,6 +1,8 @@
 <template>
   <div class="backlog-view container">
-    <p>Workspaces</p>
+    <p>Workspaces /
+      <small style="color:white">Privacy : <b-button pill @click="togglePrivacy" size="sm" variant="primary">{{ privacy }}</b-button></small>
+    </p>
 
     <NewItemForm namespace="workspace"/>
     <div class="card" v-for="w in workspaces" :key="w.url">
@@ -80,6 +82,7 @@ export default {
       console.log(item)
       this.$router.push({name: 'Bases', query: {url: item.url}})
     },
+
     // async add(){
     //   this.$store.dispatch('table/addWorkspace', {path: this.path, name:"___workspace name___"})
     //   await this.$createWorkspace("___workspace name___")
