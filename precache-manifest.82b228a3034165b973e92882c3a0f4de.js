@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/404.html"
   },
   {
-    "revision": "75911acfc654e84810ba",
+    "revision": "eda4c07e18819f4722ad",
     "url": "/ess-table/css/app.0d554beb.css"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/css/chunk-vendors.b817d239.css"
   },
   {
-    "revision": "f2ff41b8bdf946b78d61d5635d1b5784",
+    "revision": "c875623a5398a9764b50fa17a093a5a0",
     "url": "/ess-table/index.html"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/js/activity.db0c7c97.js"
   },
   {
-    "revision": "75911acfc654e84810ba",
-    "url": "/ess-table/js/app.e91b9380.js"
+    "revision": "eda4c07e18819f4722ad",
+    "url": "/ess-table/js/app.229af31a.js"
   },
   {
     "revision": "5e32fb99b74f0c0ba726",
@@ -62,6 +62,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "a87e84c2601849296fe8",
     "url": "/ess-table/js/chunk-2b385736.4495e03a.js"
+  },
+  {
+    "revision": "aa9b57f23d1e5bcbeaa4",
+    "url": "/ess-table/js/chunk-2d209533.7381a790.js"
   },
   {
     "revision": "89fd97d7e2382b34c195",
@@ -104,8 +108,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ess-table/js/kanban.f64b60fb.js"
   },
   {
-    "revision": "2e2a5d76982cd73fa5ee",
-    "url": "/ess-table/js/tablesviews.1bc10eaf.js"
+    "revision": "90b5ebf3cc289f08dba5",
+    "url": "/ess-table/js/tablesviews.b2a2119d.js"
   },
   {
     "revision": "5bdb8963bf5f0701e43f",
