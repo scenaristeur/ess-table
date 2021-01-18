@@ -5,7 +5,7 @@ import store from '@/store'
 
 import { fetchDocument } from 'tripledoc';
 import { vcard,  dct /* rdfs, foaf, ldp, acl */} from 'rdf-namespaces'
-import axios from 'axios';
+//import axios from 'axios';
 
 Vue.use(VueRouter)
 
@@ -130,23 +130,23 @@ export default router
 
 
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async function(to, from, next)  {
   //console.log("route",to, from, next)
-  let city = ""
-  axios.get('https://ipapi.co/json/')
-  .then(function (response) {
-    // handle success
-    //  console.log("RESP",JSON.stringify(response, null, 2));
-    city = response.data.city
-    //     console.log("city", city)
-  })
-  .catch(function (error) {
-    // handle error
-    console.log("ERR",error);
-  })
-  .then(async function () {
-    //   console.log("DONE")
-    // always executed
+  // let city = ""
+  // axios.get('https://ipapi.co/json/')
+  // .then(function (response) {
+  //   // handle success
+  //   //  console.log("RESP",JSON.stringify(response, null, 2));
+  //   city = response.data.city
+  //   //     console.log("city", city)
+  // })
+  // .catch(function (error) {
+  //   // handle error
+  //   console.log("ERR",error);
+  // })
+  // .then(async function () {
+  //   //   console.log("DONE")
+  //   // always executed
 
     var dateObj = new Date();
     var date = dateObj.toISOString()
@@ -159,7 +159,7 @@ router.beforeEach((to, from, next) => {
     subj.addRef(vcard.fn, store.state.solid.webId)
     subj.addString("https://schema.org/url_to", to.path)
     subj.addString("https://schema.org/url_from", from.path)
-    subj.addString("https://schema.org/location", city)
+  //  subj.addString("https://schema.org/location", city)
     logDoc.save()
 
     next()
@@ -172,7 +172,7 @@ router.beforeEach((to, from, next) => {
     console.log(weather);
   })
 })*/
-});
+//});
 
 
 })
