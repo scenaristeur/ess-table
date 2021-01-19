@@ -58,43 +58,43 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default {
   name:"TableView",
-  props: ['url', 'fields'],
+  props: ['url', 'fields', 'default_fields'],
 
   data() {
     return {
       records:[],
       special_preds:['label', 'url', 'notes', 'attachments'],
-      default_fields: [
-        {
-          key: 'label',
-          sortable: true,
-          modifiable: false,
-          stickyColumn: true,
-          isRowHeader: true,
-          variant: 'primary'
-        },
-        {
-          key: 'notes',
-          //  label: 'Person age',
-          sortable: true,
-          modifiable: false
-        },
-        {
-          key: 'attachments',
-          modifiable: false,
-          variant: 'secondary'
-        },
-        // {
-        //   key: '+',
-        //   modifiable: false
-        // },
-        {
-          key: 'url',
-          modifiable: false,
-          variant: 'secondary'
-        },
-        'new_field'
-      ],
+      // default_fields: [
+      //   {
+      //     key: 'label',
+      //     sortable: true,
+      //     modifiable: false,
+      //     stickyColumn: true,
+      //     isRowHeader: true,
+      //     variant: 'primary'
+      //   },
+      //   {
+      //     key: 'notes',
+      //     //  label: 'Person age',
+      //     sortable: true,
+      //     modifiable: false
+      //   },
+      //   {
+      //     key: 'attachments',
+      //     modifiable: false,
+      //   //  variant: 'secondary'
+      //   },
+      //   // {
+      //   //   key: '+',
+      //   //   modifiable: false
+      //   // },
+      //   {
+      //     key: 'url',
+      //     modifiable: false,
+      //     //variant: 'secondary'
+      //   },
+      //   'new_field'
+      // ],
       // record:{},
       // note: "",
       // files: []
@@ -134,7 +134,7 @@ export default {
 
             let values = []
             for await (const v of ldflex[record][pred]) {
-              console.log("KEY",f.key, `${v}`)
+            //  console.log("KEY",f.key, `${v}`)
               values.push(`${v}`)
             }
             rec[f.key] = values.length > 1 ? values : values[0]

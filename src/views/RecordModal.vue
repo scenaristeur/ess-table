@@ -21,40 +21,57 @@
 
     <p class="my-4">
       <b-list-group>
-        <b-list-group-item v-for="f in fields" :key="f.key">
-          <h5>{{f.key }} :</h5>
-          {{ record[f.key] || f.default  }}
-          <hr>
-          {{ f.type }}
-          <!--
-          { value: 'text', text: 'Text' },
-          { value: 'number', text: 'Number' },
-          { value: 'link', text: 'Link to another Record or Resource' },
-          { value: 'email', text: 'Email' },
-          { value: 'password', text: 'Password' },
-          { value: 'checkbox', text: 'Checkbox' },
-          { value: 'url', text: 'Url' },
-          { value: 'tel', text: 'Telephone' },
-          { value: 'date', text: 'Date' },
-          { value: 'time', text: 'Time' },
-          { value: 'range', text: 'Range' },
-          { value: 'color', text: 'Color' },
-          { value: 'location', text: 'Location' },
-          { value: 'select', text: 'Select' },
-        -->
+        <div v-for="f in fields" :key="f.key">
+          <b-list-group-item v-if="f.key != 'url' && f.key != 'label' && f.key != 'notes' && f.key != 'attachments'">
 
-        <select v-model="record[f.key]" v-if="f.type == 'select'"></select>
-        <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'link'"></b-form-input>
-        <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'location'"></b-form-input>
-        <b-form-checkbox v-model="record[f.key]" v-else-if="f.type == 'checkbox'"> {{ f.key }}</b-form-checkbox>
-        <b-form-input v-model="record[f.key]" :type="f.type" :placeholder="f.key" v-else></b-form-input>
+            <b-form-group
+                 id="fieldset-horizontal"
+                 label-cols-sm="4"
+                 label-cols-lg="3"
+                 content-cols-sm
+                 content-cols-lg="7"
+                 :label="f.key"
+                 label-for="input-horizontal"
+               >
+               <select v-model="record[f.key]" v-if="f.type == 'select'"></select>
+               <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'link'"></b-form-input>
+               <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'location'"></b-form-input>
+               <b-form-checkbox v-model="record[f.key]" v-else-if="f.type == 'checkbox'"> {{ f.key }}</b-form-checkbox>
+               <b-form-input v-model="record[f.key]" :type="f.type" :placeholder="f.key" v-else></b-form-input>
+                 <!-- <b-form-input id="input-horizontal"></b-form-input> -->
+               </b-form-group>
+
+
+            <!-- <h5>{{f.key }} :</h5>
+            {{ record[f.key] || f.default  }}
+
+            type: {{ f.type }} -->
 
 
 
-        <hr>
-        <small>  {{ f}}</small>
-      </b-list-group-item>
 
+            <!--
+            { value: 'text', text: 'Text' },
+            { value: 'number', text: 'Number' },
+            { value: 'link', text: 'Link to another Record or Resource' },
+            { value: 'email', text: 'Email' },
+            { value: 'password', text: 'Password' },
+            { value: 'checkbox', text: 'Checkbox' },
+            { value: 'url', text: 'Url' },
+            { value: 'tel', text: 'Telephone' },
+            { value: 'date', text: 'Date' },
+            { value: 'time', text: 'Time' },
+            { value: 'range', text: 'Range' },
+            { value: 'color', text: 'Color' },
+            { value: 'location', text: 'Location' },
+            { value: 'select', text: 'Select' },
+          -->
+
+          <!-- <hr> -->
+          <!-- <small>  {{ f}}</small> -->
+
+        </b-list-group-item>
+      </div>
     </b-list-group>
   </p>
 </b-modal>
@@ -113,7 +130,6 @@ export default {
       note: "",
       files: [],
       tick: new Date(),
-
     }
   },
   created(){
@@ -199,7 +215,7 @@ export default {
             console.log('todo url')
             break;
             default:
-            console.log(`${key}: ${value}, ${typeof value}`);
+//            console.log(`${key}: ${value}, ${typeof value}`);
 
             if (typeof value == 'string'){
               await ldflex[this.record.url][this.record.url+"#"+key.split(' ').join('+')].set(value)

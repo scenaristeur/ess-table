@@ -23,7 +23,18 @@ export default {
         }
 
         Vue.prototype.$getFields = async function(containerUrl){
-            return await Field.from(containerUrl).all()  || []
+          return await Field.from(containerUrl).all()
+        }
+
+
+
+        Vue.prototype.$updateField = async function(field){
+          const f = new Field(field);
+          console.log('FIELD UPDATE',f)
+          // You can either do this...
+          await f.save(field.url);
+
+          //  return await Field.from(containerUrl).all()
         }
 
       },

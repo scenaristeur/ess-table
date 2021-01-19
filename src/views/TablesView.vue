@@ -26,11 +26,10 @@
 
           </small>
         </template>
-        <hr>
-        <b-button pill variant="outline-primary" size="sm" @click="newField">Add a Field</b-button>
+          <b-button pill variant="outline-primary" size="sm" @click="newField">Add a Field</b-button>
         <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
 
-        <TableView :url="t" :fields="fields" />
+        <TableView :url="t" :fields="fields" :default_fields="default_fields" />
         <!-- ProjetIOIOI {{ t }} -->
 
         <!-- <b-button size="sm" variant="danger" class="float-right" @click="closeProjet(p)">
@@ -97,7 +96,7 @@ Fields : {{ fields }}
                 </template> -->
               </b-form-select>
             </b-input-group>
-            <b-form-checkbox v-model="field.multiple">Multiple</b-form-checkbox>            
+            <b-form-checkbox v-model="field.multiple">Multiple</b-form-checkbox>
             <b-input-group prepend="default value">
               <b-form-input v-model="field.default"></b-form-input>
             </b-input-group>
@@ -156,7 +155,7 @@ export default {
       default_fields: [
         {
           key: 'label',
-          sortable: true,
+        //  sortable: true,
           modifiable: false,
           stickyColumn: true,
           isRowHeader: true,
@@ -165,13 +164,13 @@ export default {
         {
           key: 'notes',
           //  label: 'Person age',
-          sortable: true,
-          modifiable: false
+          //sortable: true,
+        //  modifiable: true
         },
         {
           key: 'attachments',
-          modifiable: false,
-          variant: 'secondary'
+          //modifiable: true,
+        //  variant: 'secondary'
         },
         // {
         //   key: '+',
@@ -180,8 +179,9 @@ export default {
         {
           key: 'url',
           modifiable: false,
-          variant: 'secondary'
+        //  variant: 'secondary'
         },
+      //  'new_field'
       ],
       fields:[]
     }

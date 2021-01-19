@@ -5,7 +5,7 @@
       <router-link to="/backlog" :class="buttonClass('/backlog')">Backlog</router-link>
       <router-link to="/board" :class="buttonClass('/board')">Board</router-link>
       <SolidLoginButton />
-      <router-link to="/activity" :class="buttonClass('/activity')">Act</router-link>
+      <!-- <router-link to="/activity" :class="buttonClass('/activity')">Act</router-link> -->
     </div>
   </div>
 </template>

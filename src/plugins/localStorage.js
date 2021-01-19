@@ -12,9 +12,9 @@ export default store => {
        console.log('put to localStorage', state.table)
       localStorage.setItem('ess-table', JSON.stringify(state.table));
     }
-    else if (mutation.type.startsWith('field')){
-       console.log('put to localStorage', state.field)
-      localStorage.setItem('ess-fields', JSON.stringify(state.field));
-    }
+    // else if (mutation.type.startsWith('field')){
+    //    console.log('put to localStorage', state.field)
+    //   localStorage.setItem('ess-fields', JSON.stringify(state.field));
+    // }
   });
 };

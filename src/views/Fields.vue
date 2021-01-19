@@ -2,8 +2,11 @@
   <b-container>
     Fields
     <NewItem namespace="field"/>
-    {{fields}}
-
+    <b-list-group>
+      <b-list-group-item v-for="f in fields" :key="f.url" href="#some-link">
+        <FieldEdit :field="f" />
+      </b-list-group-item>
+    </b-list-group>
     <hr>
     {{storage}}
   </b-container>
@@ -16,6 +19,7 @@ export default {
   name: 'Fields',
   components: {
     'NewItem': () => import('@/components/basic/NewItem'),
+    'FieldEdit': () => import('@/components/ess/FieldEdit'),
   },
   created(){
     this.getFields()
@@ -30,11 +34,11 @@ export default {
   },
   computed: mapState({
     fields: s =>  s.field.fields,
+    fields_types: s => s.field.fields_types,
     storage: s => s.solid.storage
   }),
   watch:{
     storage(){
-
       this.getFields()
     }
   }
