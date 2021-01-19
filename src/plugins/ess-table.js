@@ -5,6 +5,7 @@ import solidTable from './solid-table'
 import solidRecord from './solid-record'
 import solidTask from './solid-task'
 import essModels from './ess-models'
+import solidField from './solid-field'
 //import store from '../store'
 
 export default {
@@ -16,6 +17,7 @@ export default {
     Vue.use(solidTable, options)
     Vue.use(solidRecord, options)
     Vue.use(solidTask, options)
+    Vue.use(solidField, options)
     Vue.use(essModels, options)
     // create a mixin
     Vue.mixin({

@@ -8,6 +8,7 @@ import solid from './modules/solid'
 import table from './modules/table'
 import kanban from './modules/kanban'
 import workspace from './modules/workspace'
+import field from './modules/field'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,6 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  modules: { app, solid, table, kanban, workspace
+  modules: { app, solid, table, kanban, workspace, field
   }
 })

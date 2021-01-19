@@ -50,6 +50,11 @@ const routes = [
     name: 'Activity',
     component: () => import(/* webpackChunkName: "activity" */ '../views/Activity.vue')
   },
+  {
+    path: '/fields',
+    name: 'Fields',
+    component: () => import(/* webpackChunkName: "fields" */ '../views/Fields.vue')
+  },
   // {
   //   path: '/pod',
   //   name: 'Pod',
