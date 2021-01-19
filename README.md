@@ -79,3 +79,7 @@ npm run build && cd dist && npx http-server && cd ..
 
 ### Inrup Solid Server
 https://broker.pod.inrupt.com/
+
+### semapps
+https://data-techcico.semapps.org/organizations/
+https://colibris.social/actors
