@@ -50,11 +50,19 @@ export default {
   data() {
     return {
       tick: new Date(),
-      souk_ws: []
+      souk_ws: [],
+      url : undefined
     }
   },
   created(){
-    this.getWorkspaces()
+    if (this.$route.query.url != undefined ){
+      this.url = this.$route.query.url
+      console.info("URL1",this.url)
+    }else{
+      this.getWorkspaces()
+    }
+
+
     //  this.$store.dispatch('table/getWorkspaces');
   },
   // computed: mapState({
@@ -72,6 +80,13 @@ export default {
     workspaces(){
       console.log("must update workspaces in table", this.workspaces)
       this.tick = new Date()
+    },
+    url(){
+      console.info("URL2",this.url)
+      this.$store.commit('table/setTable', this.url)
+      //this.$router.push({name: 'Tables', query: {url: this.url}})  // test http://127.0.0.1:8080/tables?url=https%3A%2F%2Fspoggy-test9.solidcommunity.net%2Fpublic%2Ftable%2Ftables%2F3e552f78-332d-40bb-98c7-0e0390e96837.ttl
+
+
 
     }
 
@@ -101,7 +116,7 @@ export default {
       this.$store.commit('table/togglePrivacy')
     },
     async getWorkspaces(){
-      if (this.storage != null){
+      if (this.storage != null && this.url == undefined){
         this.$store.dispatch('table/getWorkspaces', this.storage+this.privacy+'/table/workspaces/')
         let souk_ws = await this.$getWorkspaces(this.storage+this.privacy+'/table/test/workspaces/')
         this.souk_ws = souk_ws.map(x => ({'name' : x.name, 'createdAt': x.createdAt, 'updatedAt': x.updatedAt, url: x.url})).sort((itemA, itemB) => new Date(itemA.updatedAt) - new Date(itemB.updatedAt));
