@@ -37,7 +37,13 @@ npm run build
 ```
 
 ### Build and publish on gh-pages
-first commit : ```git add dist -f && git commit -m "Initial dist subtree commit"```
+remove /dist in .gitignore
+first commit :
+
+ ```
+ npm run build
+ git add dist -f && git commit -m "Initial dist subtree commit"
+ ```
 ```
 npm run git -- "modif"
 ```

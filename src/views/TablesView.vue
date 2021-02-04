@@ -26,7 +26,7 @@
 
           </small>
         </template>
-          <b-button pill variant="outline-primary" size="sm" @click="newField">Add a Field</b-button>
+        <b-button pill variant="outline-primary" size="sm" @click="newField">Add a Field</b-button>
         <b-button pill variant="outline-primary" size="sm" v-b-modal.modal-fields>Edit Fields</b-button>
 
         <TableView :url="t" :fields="fields" :default_fields="default_fields" />
@@ -90,13 +90,33 @@ Fields : {{ fields }}
                 <b-form-input v-model="field.key"></b-form-input>
               </b-input-group>
               <b-input-group prepend="type">
-                <b-form-select v-model="field.type" :options="field_types">
+                <b-form-select v-model="field.type" :options="fields_types">
                   <!-- <template #first>
                   <b-form-select-option value="slt">Single Line Text</b-form-select-option>
                 </template> -->
               </b-form-select>
             </b-input-group>
-            <b-form-checkbox v-model="field.multiple">Multiple</b-form-checkbox>
+            <!-- <b-form-checkbox v-model="field.multiple">Multiple</b-form-checkbox> -->
+            <b-form-checkbox v-model="field.multiple" > Allow Multiple</b-form-checkbox>
+
+            <b-form-group label="Property Type" v-slot="{ ariaDescribedby }">
+              <b-form-radio v-model="field.propertyType" :aria-describedby="ariaDescribedby" name="propertyType" value="DatatypeProperty">DatatypeProperty</b-form-radio>
+
+              <b-form-radio v-model="field.propertyType" :aria-describedby="ariaDescribedby" name="propertyType" value="ObjectProperty">ObjectProperty</b-form-radio>
+            </b-form-group>
+
+            <b-form-group label="Property Functionality" v-slot="{ ariaDescribedby2 }">
+              <b-form-radio v-model="field.propertyFunctionality" :aria-describedby="ariaDescribedby2" name="propertyFunctionality" value="FunctionalProperty">FunctionalProperty</b-form-radio>
+              <b-form-radio v-model="field.propertyFunctionality" :aria-describedby="ariaDescribedby2" name="propertyFunctionality" value="InverseFunctionalProperty">InverseFunctionalProperty</b-form-radio>
+            </b-form-group>
+            <!-- <b-form-checkbox name="propertyType" v-model="field.propertyType" value="ObjectProperty" > ObjectProperty</b-form-checkbox>
+            <b-form-checkbox name="propertyType" v-model="field.propertyType" value="DatatypeProperty" > DatatypeProperty</b-form-checkbox>
+
+            DatatypeProperty
+            ObjectProperty
+            FunctionalProperty
+            InverseFunctionalProperty -->
+
             <b-input-group prepend="default value">
               <b-form-input v-model="field.default"></b-form-input>
             </b-input-group>
@@ -121,6 +141,8 @@ Fields : {{ fields }}
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import ldflex from '@solid/query-ldflex/lib/exports/rdflib'
 
 export default {
@@ -136,26 +158,26 @@ export default {
       name: "",
       table_name:"",
       tick: new Date(),
-      field_types: [
-        { value: 'text', text: 'Text' },
-        { value: 'number', text: 'Number' },
-        { value: 'link', text: 'Link to another Record or Resource' },
-        { value: 'email', text: 'Email' },
-        { value: 'password', text: 'Password' },
-        { value: 'checkbox', text: 'Checkbox' },
-      //  { value: 'url', text: 'Url' },
-        { value: 'tel', text: 'Telephone' },
-        { value: 'date', text: 'Date' },
-        { value: 'time', text: 'Time' },
-        { value: 'range', text: 'Range' },
-        { value: 'color', text: 'Color' },
-        { value: 'location', text: 'Location' },
-        { value: 'select', text: 'Select' },
-      ],
+      // field_types: [
+      //   { value: 'text', text: 'Text' },
+      //   { value: 'number', text: 'Number' },
+      //   { value: 'link', text: 'Link to another Record or Resource' },
+      //   { value: 'email', text: 'Email' },
+      //   { value: 'password', text: 'Password' },
+      //   { value: 'checkbox', text: 'Checkbox' },
+      //   { value: 'url', text: 'Url' },
+      //   { value: 'tel', text: 'Telephone' },
+      //   { value: 'date', text: 'Date' },
+      //   { value: 'time', text: 'Time' },
+      //   { value: 'range', text: 'Range' },
+      //   { value: 'color', text: 'Color' },
+      //   { value: 'location', text: 'Location' },
+      //   { value: 'select', text: 'Select' },
+      // ],
       default_fields: [
         {
           key: 'label',
-        //  sortable: true,
+          //  sortable: true,
           modifiable: false,
           stickyColumn: true,
           isRowHeader: true,
@@ -165,12 +187,12 @@ export default {
           key: 'notes',
           //  label: 'Person age',
           //sortable: true,
-        //  modifiable: true
+          //  modifiable: true
         },
         {
           key: 'attachments',
           //modifiable: true,
-        //  variant: 'secondary'
+          //  variant: 'secondary'
         },
         // {
         //   key: '+',
@@ -179,9 +201,9 @@ export default {
         {
           key: 'url',
           modifiable: false,
-        //  variant: 'secondary'
+          //  variant: 'secondary'
         },
-      //  'new_field'
+        //  'new_field'
       ],
       fields:[]
     }
@@ -258,25 +280,34 @@ export default {
       this.tick = new Date()
     }
   },
-  computed:{
-    tables: {
-      get: function() { return this.$store.state.table.tables},
-      set: function() {}
-    },
-    base: {
-      get: function() { return this.$store.state.table.base},
-      set: function() {}
-    },
-    storage: {
-      get: function() { return this.$store.state.solid.storage},
-      set: function() {}
-    },
-    privacy: {
-      get: function() { return this.$store.state.table.privacy},
-      set: function() {}
-    },
 
-  },
+  computed: mapState({
+    fields_types: s => s.field.fields_types,
+    tables : s => s.table.tables,
+    base: s => s.table.base,
+    storage: s => s.solid.storage,
+    privacy: s => s.table.privacy
+  }),
+
+  // computed:{
+  //   tables: {
+  //     get: function() { return this.$store.state.table.tables},
+  //     set: function() {}
+  //   },
+  //   base: {
+  //     get: function() { return this.$store.state.table.base},
+  //     set: function() {}
+  //   },
+  //   storage: {
+  //     get: function() { return this.$store.state.solid.storage},
+  //     set: function() {}
+  //   },
+  //   privacy: {
+  //     get: function() { return this.$store.state.table.privacy},
+  //     set: function() {}
+  //   },
+  //
+  // },
 
 }
 

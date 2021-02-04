@@ -40,36 +40,9 @@
                <b-form-input v-model="record[f.key]" :type="f.type" :placeholder="f.key" v-else></b-form-input>
                  <!-- <b-form-input id="input-horizontal"></b-form-input> -->
                </b-form-group>
-
-
-            <!-- <h5>{{f.key }} :</h5>
-            {{ record[f.key] || f.default  }}
-
-            type: {{ f.type }} -->
-
-
-
-
-            <!--
-            { value: 'text', text: 'Text' },
-            { value: 'number', text: 'Number' },
-            { value: 'link', text: 'Link to another Record or Resource' },
-            { value: 'email', text: 'Email' },
-            { value: 'password', text: 'Password' },
-            { value: 'checkbox', text: 'Checkbox' },
-            { value: 'url', text: 'Url' },
-            { value: 'tel', text: 'Telephone' },
-            { value: 'date', text: 'Date' },
-            { value: 'time', text: 'Time' },
-            { value: 'range', text: 'Range' },
-            { value: 'color', text: 'Color' },
-            { value: 'location', text: 'Location' },
-            { value: 'select', text: 'Select' },
-          -->
-
-          <!-- <hr> -->
-          <!-- <small>  {{ f}}</small> -->
-
+<small>
+            {{ f }}
+</small>
         </b-list-group-item>
       </div>
     </b-list-group>
