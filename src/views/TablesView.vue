@@ -90,6 +90,7 @@ Fields : {{ fields }}
                 <b-form-input v-model="field.key"></b-form-input>
               </b-input-group>
               <b-input-group prepend="type">
+
                 <b-form-select v-model="field.type" :options="fields_types">
                   <!-- <template #first>
                   <b-form-select-option value="slt">Single Line Text</b-form-select-option>
@@ -97,32 +98,37 @@ Fields : {{ fields }}
               </b-form-select>
             </b-input-group>
             <!-- <b-form-checkbox v-model="field.multiple">Multiple</b-form-checkbox> -->
+
+
+            <b-row>
+              <b-form-group class="b-col p-2" label="Property Type" v-slot="{ ariaDescribedby }">
+                <b-form-checkbox v-model="field.propertyType" :aria-describedby="ariaDescribedby" name="propertyType" value="DatatypeProperty">DatatypeProperty</b-form-checkbox>
+                <b-form-checkbox v-model="field.propertyType" :aria-describedby="ariaDescribedby" name="propertyType" value="ObjectProperty">ObjectProperty</b-form-checkbox>
+              </b-form-group>
+
+              <b-form-group class="b-col p-2" label="Property Functionality" v-slot="{ ariaDescribedby2 }">
+                <b-form-checkbox v-model="field.propertyFunctionality" :aria-describedby="ariaDescribedby2" name="propertyFunctionality" value="FunctionalProperty">FunctionalProperty</b-form-checkbox>
+                <b-form-checkbox v-model="field.propertyFunctionality" :aria-describedby="ariaDescribedby2" name="propertyFunctionality" value="InverseFunctionalProperty">InverseFunctionalProperty</b-form-checkbox>
+              </b-form-group>
+              <!-- <b-form-checkbox name="propertyType" v-model="field.propertyType" value="ObjectProperty" > ObjectProperty</b-form-checkbox>
+              <b-form-checkbox name="propertyType" v-model="field.propertyType" value="DatatypeProperty" > DatatypeProperty</b-form-checkbox>
+
+              DatatypeProperty
+              ObjectProperty
+              FunctionalProperty
+              InverseFunctionalProperty -->
+            </b-row>
+
             <b-form-checkbox v-model="field.multiple" > Allow Multiple</b-form-checkbox>
 
-            <b-form-group label="Property Type" v-slot="{ ariaDescribedby }">
-              <b-form-radio v-model="field.propertyType" :aria-describedby="ariaDescribedby" name="propertyType" value="DatatypeProperty">DatatypeProperty</b-form-radio>
-
-              <b-form-radio v-model="field.propertyType" :aria-describedby="ariaDescribedby" name="propertyType" value="ObjectProperty">ObjectProperty</b-form-radio>
-            </b-form-group>
-
-            <b-form-group label="Property Functionality" v-slot="{ ariaDescribedby2 }">
-              <b-form-radio v-model="field.propertyFunctionality" :aria-describedby="ariaDescribedby2" name="propertyFunctionality" value="FunctionalProperty">FunctionalProperty</b-form-radio>
-              <b-form-radio v-model="field.propertyFunctionality" :aria-describedby="ariaDescribedby2" name="propertyFunctionality" value="InverseFunctionalProperty">InverseFunctionalProperty</b-form-radio>
-            </b-form-group>
-            <!-- <b-form-checkbox name="propertyType" v-model="field.propertyType" value="ObjectProperty" > ObjectProperty</b-form-checkbox>
-            <b-form-checkbox name="propertyType" v-model="field.propertyType" value="DatatypeProperty" > DatatypeProperty</b-form-checkbox>
-
-            DatatypeProperty
-            ObjectProperty
-            FunctionalProperty
-            InverseFunctionalProperty -->
 
             <b-input-group prepend="default value">
               <b-form-input v-model="field.default"></b-form-input>
             </b-input-group>
-            {{ field }}
+
             <b-button variant="danger" @click="remove(field)">Remove</b-button>
           </b-card-text>
+          <small>{{ field }}</small>
         </b-card-body>
       </b-collapse>
 

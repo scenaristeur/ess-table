@@ -11,28 +11,36 @@ import { v4 as uuidv4 } from 'uuid';
 const state = () => ({
   fields: localStorage.getItem('ess-fields') || [],
   fields_types: [
-    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'any'}, text: 'Any' },
-    { value: {type:'http://www.w3.org/ns/ui#Resource', name: 'resource'}, text: 'Workspace/Base/Table/Record/Issue/Todo or Solid Resource' },
-    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'url'}, text: 'External URL' },
-    { value: {type:'http://www.w3.org/ns/ui#SingleLineTextField', name: 'singleline'}, text: 'Single Line Text' },
-    { value: {type:'http://www.w3.org/ns/ui#TextField', name: 'textfield'}, text: 'Text' },
-    { value: {type:'http://www.w3.org/ns/ui#MultiLineTextField', name: 'multiline'}, text: 'MultiLine Text' },
-    { value: {type:'http://www.w3.org/ns/ui#BooleanField', name: 'boolean'}, text: 'Boolean' },
-    { value: {type:'http://www.w3.org/ns/ui#TriStateField', name: 'tristate'}, text: 'Tri State' }, // True False /unknown ?
-    { value: {type:'http://www.w3.org/ns/ui#NumericField', name: 'numeric'}, text: 'Numeric' },
-    { value: {type:'http://www.w3.org/ns/ui#IntegerField', name: 'integer'}, text: 'Integer' }, // number ?
-    { value: {type:'http://www.w3.org/ns/ui#DecimalField', name: 'decimal'}, text: 'Decimal' },
-    { value: {type:'http://www.w3.org/ns/ui#FloatField', name: 'float'}, text: 'Float' },
-    { value: {type:'http://www.w3.org/ns/ui#ColorField', name: 'color'}, text: 'Color' },
-    { value: {type:'http://www.w3.org/ns/ui#Range', name: 'range'}, text: 'Range' },
-    { value: {type:'http://www.w3.org/ns/ui#DateField', name: 'date²'}, text: 'Date' },
-    { value: {type:'http://www.w3.org/ns/ui#DateTimeField', name: 'datetime'}, text: 'DateTime' },
-    { value: {type:'http://www.w3.org/ns/ui#TimeField', name: 'time'}, text: 'Time' },
-    { value: {type:'http://www.w3.org/ns/ui#EmailField', name: 'email'}, text: 'Email' },
-    { value: {type:'http://www.w3.org/ns/ui#PhoneField', name: 'phone'}, text: 'Phone' },
-    { value: {type:'http://www.w3.org/ns/ui#MultiLineTextField', name: 'code'}, text: 'Code' },
-    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'file'}, text: 'file Upload' },
-    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'vcard'}, text: 'Vcard' },
+    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'any', html_type: "text" }, text: 'Any' },
+    { value: {type:'http://www.w3.org/ns/ui#DateField', name: 'date', html_type: "date" }, text: 'Date' },
+    { value: {type:'http://www.w3.org/ns/ui#TimeField', name: 'time', html_type: "time" }, text: 'Time' },
+    { value: {type:'http://www.w3.org/ns/ui#Resource', name: 'resource', html_type: "browse" }, text: 'Workspace/Base/Table/Record/Issue/Todo or Solid Resource' },
+    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'url', html_type: "text" }, text: 'External URL' },
+    { value: {type:'http://www.w3.org/ns/ui#SingleLineTextField', name: 'singleline', html_type: "text" }, text: 'Single Line Text' },
+    { value: {type:'http://www.w3.org/ns/ui#TextField', name: 'textfield', html_type: "text" }, text: 'Text' },
+    { value: {type:'http://www.w3.org/ns/ui#MultiLineTextField', name: 'multiline', html_type: "textarea" }, text: 'MultiLine Text' },
+    { value: {type:'http://www.w3.org/ns/ui#BooleanField', name: 'boolean', html_type: "checkbox" }, text: 'Boolean' },
+    { value: {type:'http://www.w3.org/ns/ui#NumericField', name: 'numeric', html_type: "number" }, text: 'Numeric' },
+    { value: {type:'http://www.w3.org/ns/ui#IntegerField', name: 'integer', html_type: "number" }, text: 'Integer' }, // number ?
+    { value: {type:'http://www.w3.org/ns/ui#DecimalField', name: 'decimal', html_type: "number" }, text: 'Decimal' },
+    { value: {type:'http://www.w3.org/ns/ui#FloatField', name: 'float', html_type: "number" }, text: 'Float' },
+    { value: {type:'http://www.w3.org/ns/ui#ColorField', name: 'color', html_type: "color" }, text: 'Color' },
+    { value: {type:'http://www.w3.org/ns/ui#Range', name: 'range', html_type: "range" }, text: 'Range' },
+  { value: {type:'http://www.w3.org/ns/ui#SingleLineTextField', name: 'location', html_type: "location" }, text: 'Geo Location Place' },
+    { value: {type:'http://www.w3.org/ns/ui#SingleLineTextField', name: 'event', html_type: "event" }, text: 'Calendar Event' }, // date + time ?
+    { value: {type:'http://www.w3.org/ns/ui#Montg', name: 'month', html_type: "month" }, text: 'Month' },
+    { value: {type:'http://www.w3.org/ns/ui#Week', name: 'week', html_type: "week" }, text: 'Week' },
+    { value: {type:'http://www.w3.org/ns/ui#Image', name: 'image', html_type: "image" }, text: 'Image' },
+    { value: {type:'http://www.w3.org/ns/ui#EmailField', name: 'email', html_type: "email" }, text: 'Email' },
+    { value: {type:'http://www.w3.org/ns/ui#PhoneField', name: 'phone', html_type: "tel" }, text: 'Phone' },
+    { value: {type:'http://www.w3.org/ns/ui#MultiLineTextField', name: 'code', html_type: "textarea" }, text: 'Code' },
+    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'file', html_type: "file" }, text: 'file Upload' },
+    { value: {type:'http://www.w3.org/ns/ui#ValueField', name: 'vcard', html_type: "browse" }, text: 'Vcard' },
+    { value: {type:'http://www.w3.org/ns/ui#Select', name: 'select', html_type: "select" }, text: 'Select (todo which values /list/array/source ?)' },
+    { value: {type:'http://www.w3.org/ns/ui#TriStateField', name: 'tristate', html_type: "radio" }, text: 'Tri State' }, // True False /unknown ?
+    { value: {type:'http://www.w3.org/ns/ui#Search', name: 'search', html_type: "search" }, text: 'Search' }, // input type="search" https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input/search
+    //  { value: {type:'http://www.w3.org/ns/ui#DateTimeField', name: 'datetime', html_type: "text" }, text: 'DateTime' }, // retired
+
     // { value: 'text', text: 'Text' },
     // { value: 'number', text: 'Number' },
     // { value: 'link', text: 'Link to another Record/Table/Base/Workspace or Solid Resource' },

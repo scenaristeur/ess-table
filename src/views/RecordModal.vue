@@ -25,24 +25,55 @@
           <b-list-group-item v-if="f.key != 'url' && f.key != 'label' && f.key != 'notes' && f.key != 'attachments'">
 
             <b-form-group
-                 id="fieldset-horizontal"
-                 label-cols-sm="4"
-                 label-cols-lg="3"
-                 content-cols-sm
-                 content-cols-lg="7"
-                 :label="f.key"
-                 label-for="input-horizontal"
-               >
-               <select v-model="record[f.key]" v-if="f.type == 'select'"></select>
-               <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'link'"></b-form-input>
-               <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type == 'location'"></b-form-input>
-               <b-form-checkbox v-model="record[f.key]" v-else-if="f.type == 'checkbox'"> {{ f.key }}</b-form-checkbox>
-               <b-form-input v-model="record[f.key]" :type="f.type" :placeholder="f.key" v-else></b-form-input>
-                 <!-- <b-form-input id="input-horizontal"></b-form-input> -->
-               </b-form-group>
-<small>
+            id="fieldset-horizontal"
+            label-cols-sm="4"
+            label-cols-lg="3"
+            content-cols-sm
+            content-cols-lg="7"
+            :label="f.key"
+            label-for="input-horizontal"
+            >
+
+            <!-- {{ f.type.html_type}} -->
+            <select v-model="record[f.key]" v-if="f.type.html_type == 'select'"></select>
+            <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type.html_type == 'link'"></b-form-input>
+            <b-form-input v-model="record[f.key]" :placeholder="f.key" v-else-if="f.type.html_type == 'location'"></b-form-input>
+            <b-form-checkbox v-model="record[f.key]" v-else-if="f.type.html_type == 'checkbox'"> {{ f.key }}</b-form-checkbox>
+            <b-form-file
+            v-else-if="f.type.html_type == 'file'"
+            v-model="record[f.key]"
+            :multiple="record[f.multiple]"
+            placeholder="Choose a file or drop it here..."
+            drop-placeholder="Drop file here..."
+            ></b-form-file>
+            <b-form-group  v-else-if="f.type.html_type == 'browse'" :placeholder="f.key">
+              <b-form-group class="b-row" v-slot="{ ariaDescribedby }">
+                <b-form-radio class="b-col" v-model="pod" :aria-describedby="ariaDescribedby" name="storage" value="current">current POD</b-form-radio>
+                <b-form-radio class="b-col" v-model="pod" :aria-describedby="ariaDescribedby" name="storage" value="remote">remote POD</b-form-radio>
+              </b-form-group>
+
+              Workspace  <select v-model="record[f.key]" label="workspace">
+                <option v-for="w in workspaces" :key="w.url" :value="w.url">{{w.name}}</option>
+              </select>
+              Base  <select v-model="record[f.key]" label="bases">
+                <option v-for="b in bases" :key="b.url" :value="b.url">{{b.name}}</option>
+              </select>
+              Table  <select v-model="record[f.key]" label="tables">
+                <option v-for="t in tables" :key="t.url" :value="t.url">{{t.name}}</option>
+              </select>
+              Record  <select v-model="record[f.key]" label="records">
+                <option v-for="r in records" :key="r.url" :value="r.url">{{r.name}}</option>
+              </select>
+              {{ workspaces}}
+              <b-form-input v-model="record[f.key]" :placeholder="f.key" ></b-form-input>
+
+            </b-form-group>
+            <b-form-input v-model="record[f.key]" :type="f.type.html_type" :placeholder="f.key" v-else></b-form-input>
+            <!-- <b-form-input id="input-horizontal"></b-form-input> -->
+          </b-form-group>
+          <small>
             {{ f }}
-</small>
+          </small>
         </b-list-group-item>
       </div>
     </b-list-group>
@@ -87,6 +118,7 @@ import FC from 'solid-file-client'
 const fc = new FC( auth )
 //import { v4 as uuidv4 } from 'uuid';
 import watermark from 'watermarkjs'
+import { mapState } from 'vuex';
 
 
 export default {
@@ -103,10 +135,11 @@ export default {
       note: "",
       files: [],
       tick: new Date(),
+      pod: ""
     }
   },
   created(){
-    this.record = this.$store.state.table.record
+    this.pod = "current"
   },
   methods: {
 
@@ -188,7 +221,7 @@ export default {
             console.log('todo url')
             break;
             default:
-//            console.log(`${key}: ${value}, ${typeof value}`);
+            //            console.log(`${key}: ${value}, ${typeof value}`);
 
             if (typeof value == 'string'){
               await ldflex[this.record.url][this.record.url+"#"+key.split(' ').join('+')].set(value)
@@ -210,22 +243,20 @@ export default {
     watch:{
       record(){
         console.log(this.record)
+      },
+      pod(){
+
       }
     },
-    computed:{
-      record: {
-        get: function() { return this.$store.state.table.record},
-        set: function() {}
-      },
-      storage: {
-        get: function() { return this.$store.state.solid.storage},
-        set: function() {}
-      },
-      privacy: {
-        get: function() { return this.$store.state.table.privacy},
-        set: function() {}
-      },
-    }
+    computed: mapState({
+      workspaces: s => s.table.workspaces,
+      tables : s => s.table.tables,
+      bases: s => s.table.bases,
+      records: s => s.table.records,
+      record: s => s.table.record,
+      storage: s => s.solid.storage,
+      privacy: s => s.table.privacy
+    }),
 
   }
 
