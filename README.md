@@ -40,10 +40,10 @@ npm run build
 remove /dist in .gitignore
 first commit :
 
- ```
- npm run build
- git add dist -f && git commit -m "Initial dist subtree commit"
- ```
+```
+npm run build
+git add dist -f && git commit -m "Initial dist subtree commit"
+```
 ```
 npm run git -- "modif"
 ```
