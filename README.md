@@ -89,3 +89,14 @@ https://broker.pod.inrupt.com/
 ### semapps
 https://data-techcico.semapps.org/organizations/
 https://colibris.social/actors
+
+### npm outdated
+`
+smag@think:~/dev/ess-table$ npm outdated
+Package            Current  Wanted  Latest  Location                        Depended by
+bootstrap            4.6.0   4.6.0   5.0.2  node_modules/bootstrap          ess-table
+bootswatch           4.6.0   4.6.0   5.0.2  node_modules/bootswatch         ess-table
+eslint               6.8.0   6.8.0  7.32.0  node_modules/eslint             ess-table
+eslint-plugin-vue    6.2.2   6.2.2  7.15.1  node_modules/eslint-plugin-vue  ess-table
+solid-file-client    1.2.5   1.2.5   2.1.0  node_modules/solid-file-client  ess-table
+`

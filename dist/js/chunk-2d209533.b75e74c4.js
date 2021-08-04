@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d209533"],{a927:function(n,t,o){"use strict";o.r(t);var e=function(){var n=this,t=n.$createElement,o=n._self._c||t;return o("b-button",{attrs:{variant:"outline-info",size:"sm"},on:{click:n.fork}},[o("b-icon-alt")],1)},l=[],r={name:"ForkButton",props:["url"],methods:{fork:function(){console.log(this.url)}}},u=r,s=o("2877"),c=Object(s["a"])(u,e,l,!1,null,null,null);t["default"]=c.exports}}]);
-//# sourceMappingURL=chunk-2d209533.b75e74c4.js.map

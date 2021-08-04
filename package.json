@@ -21,7 +21,7 @@
     "rdf-namespaces": "^1.9.2",
     "register-service-worker": "^1.7.2",
     "solid-auth-client": "^2.5.4",
-    "solid-file-client": "^1.2.2",
+    "solid-file-client": "^2.1.0",
     "soukai": "^0.4.0",
     "soukai-solid": "^0.4.0",
     "tripledoc": "^4.4.0",

@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["templates"],{"98ca":function(e,t,n){"use strict";n.r(t);var s=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"home"},[e._v(" Templates ")])},a=[],l={name:"Templates",components:{}},c=l,o=n("2877"),p=Object(o["a"])(c,s,a,!1,null,null,null);t["default"]=p.exports}}]);
+//# sourceMappingURL=templates.6f466f38.js.map
