@@ -1,48 +1,54 @@
 <template>
   <b-container>
-    <h2>{{name}}
+    <h5>
       <b-button variant="outline-info" v-b-modal.modal-ws size="sm">
+        {{name}}
         <b-icon-pen>
         </b-icon-pen>
       </b-button>
-    </h2>
+      <b-button variant="outline-primary" @click="add" size="sm">
+        <b-icon-plus variant="primary">
+        </b-icon-plus>
+        Add a base
+      </b-button>
+    </h5>
 
-
+    <b-list-group>
+      <b-list-group-item button v-for="(b,i) in bases" :key=i class="mb-2" @click="showTables(b)">
+        <Label :url="b" :tick="tick" />
+      </b-list-group-item>
+    </b-list-group>
     <!-- <EditableSpan v-model="name" />  -->
     <hr>
     <ul>
-      <li v-for="(b,i) in bases" :key=i class="mb-2" @click="showTables(b)">
-        <b-button variant="outline-info">
-          <b-icon-pen class="border border-info rounded p-2" font-scale="3" variant="info">
-          </b-icon-pen><br>
-          <Label :url="b" :tick="tick" />
-        </b-button>
-      </li>
+      <!-- <li v-for="(b,i) in bases" :key=i class="mb-2" @click="showTables(b)">
+      <b-button variant="outline-info">
+      <b-icon-pen class="border border-info rounded p-2" font-scale="3" variant="info">
+    </b-icon-pen><br>
+    <Label :url="b" :tick="tick" />
+  </b-button>
+</li> -->
 
-      <li>
-        <b-button variant="outline-primary" @click="add">
-          <b-icon-plus class="border border-primary rounded p-2" font-scale="2" variant="primary">
-          </b-icon-plus><br>
-          Add a base
-        </b-button>
-      </li>
+<li>
 
-    </ul>
-    <a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a> |
-    <a :href="'https://scenaristeur.github.io/spoggy-simple/?source='+workspace" target="_blank">workspace graphe <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a>
+</li>
 
-    <b-modal id="modal-ws" title="Rename" @ok="edit_ws_name">
-      <b-form-input v-model="name" placeholder="Enter the name of the workspace"></b-form-input>
-    </b-modal>
-    <!-- <b-card-group deck>
+</ul>
+<a :href="workspace" target="_blank">workspace <b-icon-link45deg></b-icon-link45deg></a> |
+<a :href="'https://scenaristeur.github.io/ipgs?url='+workspace" target="_blank">workspace graphe <b-icon-gear-wide-connected></b-icon-gear-wide-connected></a>
 
-    <b-card v-for="(b,i) in bases" :key=i
-    style="min-width: 10rem;">
-    <b-card-header>Tit</b-card-header>
-    <blockquote class="blockquote mb-0">
-    <p>{{b}}</p>
+<b-modal id="modal-ws" title="Rename" @ok="edit_ws_name">
+  <b-form-input v-model="name" placeholder="Enter the name of the workspace"></b-form-input>
+</b-modal>
+<!-- <b-card-group deck>
 
-  </blockquote>
+<b-card v-for="(b,i) in bases" :key=i
+style="min-width: 10rem;">
+<b-card-header>Tit</b-card-header>
+<blockquote class="blockquote mb-0">
+<p>{{b}}</p>
+
+</blockquote>
 </b-card>
 
 </b-card-group> -->
@@ -72,6 +78,7 @@ export default {
     let ws = this.$route.query.url
     //this.name = this.$route.query.name || "todo get name"
     this.$store.commit('table/setWorkspace', ws)
+    this.init()
   },
   // async created() {
   //   //do something after creating vue instance
@@ -80,6 +87,12 @@ export default {
   //   console.log("name", this.name)
   // },
   methods: {
+    async init(){
+      this.$store.dispatch('table/getBases', this.workspace)
+      let name =  await ldflex[this.workspace].label
+      this.name = `${name}`
+      this.tick = new Date()
+    },
     async add(){
       let base = {path: this.storage+this.privacy+'/table/bases/', name:"___base name___", workspace: this.workspace}
       //  console.log(base)
@@ -99,11 +112,8 @@ export default {
     }
   },
   watch:{
-    async  workspace(){
-      this.$store.dispatch('table/getBases', this.workspace)
-      let name =  await ldflex[this.workspace].label
-      this.name = `${name}`
-      this.tick = new Date()
+    async workspace(){
+      this.init()
     }
   },
   computed:{

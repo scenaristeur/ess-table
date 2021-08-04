@@ -6,6 +6,7 @@
     </div>
     <MenuBar />
 
+
     <router-view v-if="webId != null" />
     <b-container v-else>
       Please Login to use Ess Tables <br>
@@ -13,6 +14,11 @@
     </b-container>
     <SolidTrackSession />
     <a href="https://github.com/scenaristeur/ess-table/" target="_blank">source</a>
+
+    <hr>
+    test breadcrumb
+        <Breadcrumb />
+
   </div>
 </template>
 <script>
@@ -21,6 +27,7 @@ export default {
   components: {
     'SolidTrackSession': () => import('@/components/solid/SolidTrackSession'),
     'MenuBar': () => import('@/components/layout/MenuBar'),
+    'Breadcrumb': () => import('@/components/layout/Breadcrumb'),
     // 'Table': () => import('@/components/table/Table'),
   },
   computed:{
